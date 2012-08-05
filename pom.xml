@@ -22,7 +22,7 @@
   <packaging>pom</packaging>
   <inceptionYear>2012</inceptionYear>
   <url>http://github.com/sebhoss/junit-testdata-rule</url>
-  <name>Testdata rule for JUnit</name>
+  <name>JUnit test data rule</name>
   <description>TestRule which load data before the execution of tests.</description>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
