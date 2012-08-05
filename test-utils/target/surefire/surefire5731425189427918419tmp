@@ -1,0 +1,5 @@
+#surefire
+#Fri Jul 13 20:58:02 CEST 2012
+user.dir=/home/seb/Projekte/sebhoss/junit/workspace/testdata-rules/test-utils
+localRepository=/home/seb/.m2/repository
+basedir=/home/seb/Projekte/sebhoss/junit/workspace/testdata-rules/test-utils

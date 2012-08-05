@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1342205900063
+Build-Jdk: 1.7.0_03
+Built-By: seb
+Bundle-Category: DbC
+Bundle-Copyright: Sebastian Hoß (mail@shoss.de)
+Bundle-Description: Collection of TestRule which load data before the ex
+ ecution of tests.
+Bundle-DocURL: http://github.com/sebhoss/testdata-rules/dbunit
+Bundle-License: http://sam.zoy.org/wtfpl/COPYING
+Bundle-ManifestVersion: 2
+Bundle-Name: dbunit
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-SymbolicName: com.github.sebhoss.testdata.dbunit
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.github.sebhoss.testdata;uses:="org.dbunit.operation,
+ org.dbunit.database,org.dbunit,javax.inject,org.dbunit.dataset,org.dbun
+ it.util.fileloader";version="1.0.0.SNAPSHOT"
+Import-Package: javax.inject,org.dbunit,org.dbunit.database,org.dbunit.d
+ ataset,org.dbunit.operation,org.dbunit.util.fileloader
+Originally-Created-By: Apache Maven Bundle Plugin
+Tool: Bnd-1.50.0
