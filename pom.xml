@@ -16,14 +16,14 @@
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               INFORMATIONS                              -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <groupId>com.github.sebhoss.testdata</groupId>
-  <artifactId>testdata-rules</artifactId>
+  <groupId>com.github.sebhoss.junit</groupId>
+  <artifactId>junit-testdata-rule</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <inceptionYear>2012</inceptionYear>
-  <url>http://github.com/sebhoss/testdata-rules</url>
-  <name>Testdata TestRules for JUnit</name>
-  <description>Collection of TestRule which load data before the execution of tests.</description>
+  <url>http://github.com/sebhoss/junit-testdata-rule</url>
+  <name>Testdata rule for JUnit</name>
+  <description>TestRule which load data before the execution of tests.</description>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                                 MODULES                                 -->
