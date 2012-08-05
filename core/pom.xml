@@ -5,6 +5,8 @@
     <artifactId>junit-testdata-rule</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
+  
+  <groupId>com.github.sebhoss.junit.testdata</groupId>
   <artifactId>core</artifactId>
   
   <dependencies>

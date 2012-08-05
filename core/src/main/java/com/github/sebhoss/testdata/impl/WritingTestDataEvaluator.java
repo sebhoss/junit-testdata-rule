@@ -10,16 +10,24 @@ import javax.inject.Inject;
 import org.junit.runners.model.Statement;
 
 import com.github.sebhoss.testdata.TestDataEvaluator;
-import com.github.sebhoss.testdata.TestDataWriter;
 import com.github.sebhoss.testdata.TestDataExecutionPoint;
+import com.github.sebhoss.testdata.TestDataWriter;
 
-public final class LoadingTestDataEvaluator<O extends Object> implements TestDataEvaluator<O> {
+/**
+ * 
+ * @param <O>
+ */
+public final class WritingTestDataEvaluator<O extends Object> implements TestDataEvaluator<O> {
 
-    private final TestDataWriter<O> writer;
+    private final TestDataWriter<O>      writer;
     private final TestDataExecutionPoint executionPoint;
 
+    /**
+     * @param writer
+     * @param executionPoint
+     */
     @Inject
-    public LoadingTestDataEvaluator(final TestDataWriter<O> writer, final TestDataExecutionPoint executionPoint) {
+    public WritingTestDataEvaluator(final TestDataWriter<O> writer, final TestDataExecutionPoint executionPoint) {
         this.writer = writer;
         this.executionPoint = executionPoint;
     }
