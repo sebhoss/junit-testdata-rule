@@ -5,26 +5,31 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 package com.github.sebhoss.testdata;
 
+import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
  * Evaluates a {@link Statement statement} with a given set of test data.
- * 
- * @param <O>
- *            The type of the data to write.
  */
-public interface TestDataEvaluator<O extends Object> {
+public interface Evaluator {
+
+    /**
+     * @param description
+     *            The description of a JUnit test statement.
+     * @return <code>true</code> if this factory has test data for the given test, <code>false</code> otherwise.
+     */
+    boolean hasTestDataFor(Description description);
 
     /**
      * Evaluates the given statement with the given test data.
      * 
      * @param statement
      *            The statement to evaluate.
-     * @param testdata
-     *            The test data to use.
+     * @param description
+     *            The description of the statement to evaluate.
      * @throws Throwable
      *             For whatever reason.
      */
-    void evaluateStatementWithData(Statement statement, Iterable<O> testdata) throws Throwable;
+    void evaluateStatementWithTestData(Statement statement, Description description) throws Throwable;
 
 }

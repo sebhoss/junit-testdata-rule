@@ -17,7 +17,7 @@ import javax.inject.Inject;
 /**
  * Path-based reader for statements separated by a specific separator (e.g. ';' for SQL).
  */
-public class StatementReader {
+public final class StatementReader {
 
     private final Charset charset;
     private final String  statementSeparator;

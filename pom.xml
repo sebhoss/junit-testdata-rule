@@ -12,6 +12,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
+  
+  <prerequisites>
+    <maven>3.0.0</maven>
+  </prerequisites>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               INFORMATIONS                              -->
@@ -52,10 +56,10 @@
   <!--                                  SOURCE                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <scm>
-    <connection>scm:git:git://github.com/sebhoss/testdata-rules.git</connection>
-    <developerConnection>scm:git:git@github.com:sebhoss/testdata-rules.git</developerConnection>
+    <connection>scm:git:git://github.com/sebhoss/junit-testdata-rule.git</connection>
+    <developerConnection>scm:git:git@github.com:sebhoss/junit-testdata-rule.git</developerConnection>
     <tag>master</tag>
-    <url>${project.url}</url>
+    <url>http://github.com/sebhoss/junit-testdata-rule</url>
   </scm>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

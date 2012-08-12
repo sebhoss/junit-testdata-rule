@@ -2,36 +2,56 @@ package com.github.sebhoss.testdata.builder;
 
 import javax.transaction.TransactionManager;
 
-import com.github.sebhoss.testdata.TestDataEvaluator;
-import com.github.sebhoss.testdata.TestDataWriter;
-import com.github.sebhoss.testdata.TestDataExecutionPoint;
-import com.github.sebhoss.testdata.impl.LoadingTestDataEvaluator;
-import com.github.sebhoss.testdata.impl.TransactionalTestDataEvaluator;
+import com.github.sebhoss.testdata.Evaluator;
+import com.github.sebhoss.testdata.ExecutionPoint;
+import com.github.sebhoss.testdata.Writer;
+import com.github.sebhoss.testdata.impl.TransactionalEvaluator;
+import com.github.sebhoss.testdata.impl.TestDataEvaluator;
 import com.google.common.base.Preconditions;
 
-public final class TestDataEvaluatorBuilder<O extends Object> {
+/**
+ * 
+ * @param <T>
+ *            The type of the data to write.
+ */
+public final class TestDataEvaluatorBuilder<T> {
 
-    private TestDataWriter<O>  loader;
+    private Writer<T>  writer;
     private TransactionManager transactionManager;
 
-    public TestDataEvaluatorBuilder<O> loadedBy(final TestDataWriter<O> loaderToUse) {
-        this.loader = Preconditions.checkNotNull(loaderToUse);
+    /**
+     * @param writerToUse
+     *            The writer to use.
+     * @return The current builder.
+     */
+    public TestDataEvaluatorBuilder<T> loadedBy(final Writer<T> writerToUse) {
+        this.writer = Preconditions.checkNotNull(writerToUse);
 
         return this;
     }
 
-    public TestDataEvaluatorBuilder<O> managedBy(final TransactionManager transactionManagerToUse) {
+    /**
+     * @param transactionManagerToUse
+     *            The transaction manager to use.
+     * @return The current builder.
+     */
+    public TestDataEvaluatorBuilder<T> managedBy(final TransactionManager transactionManagerToUse) {
         this.transactionManager = transactionManagerToUse;
 
         return this;
     }
 
-    public TestDataEvaluator<O> at(final TestDataExecutionPoint loadpoint) {
-        Preconditions.checkNotNull(loadpoint);
+    /**
+     * @param executionPoint
+     *            The execution point to use.
+     * @return A ready to use test-data evaluator.
+     */
+    public Evaluator<T> at(final ExecutionPoint executionPoint) {
+        Preconditions.checkNotNull(executionPoint);
 
-        Preconditions.checkState(this.loader != null);
+        Preconditions.checkState(this.writer != null);
 
-        final TestDataEvaluator<O> evaluator = new LoadingTestDataEvaluator<>(this.loader, loadpoint);
+        final Evaluator<T> evaluator = new TestDataEvaluator<>(this.writer, executionPoint);
 
         if (this.transactionManager == null) {
             return evaluator;
@@ -39,7 +59,7 @@ public final class TestDataEvaluatorBuilder<O extends Object> {
 
         Preconditions.checkState(this.transactionManager != null);
 
-        return new TransactionalTestDataEvaluator<>(this.transactionManager, evaluator);
+        return new TransactionalEvaluator<>(this.transactionManager, evaluator);
     }
 
 }

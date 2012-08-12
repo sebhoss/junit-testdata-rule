@@ -3,7 +3,7 @@
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
-package com.github.sebhoss.testdata;
+package com.github.sebhoss.junit.testdata.dbunit;
 
 import java.sql.SQLException;
 
@@ -14,19 +14,26 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.operation.DatabaseOperation;
 
-import com.github.sebhoss.testdata.TestDataWriter;
+import com.github.sebhoss.testdata.Writer;
 
 /**
+ * DbUnit-based writer.
  * 
  * @see DatabaseOperation Possible database operations.
  */
-public final class DbUnitDataLoader implements TestDataWriter<IDataSet> {
+public final class DbUnitWriter implements Writer<IDataSet> {
 
     private final IDatabaseConnection connection;
     private final DatabaseOperation   operation;
 
+    /**
+     * @param connection
+     *            The database connection to use.
+     * @param operation
+     *            The database operation to perform.
+     */
     @Inject
-    public DbUnitDataLoader(final IDatabaseConnection connection, final DatabaseOperation operation) {
+    public DbUnitWriter(final IDatabaseConnection connection, final DatabaseOperation operation) {
         this.connection = connection;
         this.operation = operation;
     }

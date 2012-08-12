@@ -12,14 +12,21 @@ import java.sql.Statement;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
-import com.github.sebhoss.testdata.TestDataWriter;
+import com.github.sebhoss.testdata.Writer;
 
-public final class SqlTestDataLoader implements TestDataWriter<String> {
+/**
+ * A test-data writer which writes SQL statements (Strings) into a datasource. All statements are batched.
+ */
+public final class BatchSqlWriter implements Writer<String> {
 
     private final DataSource dataSource;
 
+    /**
+     * @param dataSource
+     *            The DataSource to use.
+     */
     @Inject
-    public SqlTestDataLoader(final DataSource dataSource) {
+    public BatchSqlWriter(final DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

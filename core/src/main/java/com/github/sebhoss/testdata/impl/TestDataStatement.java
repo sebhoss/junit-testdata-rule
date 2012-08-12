@@ -5,29 +5,35 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 package com.github.sebhoss.testdata.impl;
 
+import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import com.github.sebhoss.testdata.TestDataEvaluator;
+import com.github.sebhoss.testdata.Evaluator;
 
 /**
- * Special {@link Statement statement} which loads test data with the help of a {@link TestDataEvaluator}.
+ * Special {@link Statement statement} which loads test data with the help of a {@link Evaluator}.
  * 
  * TestDataStatement instances are not meant to be injected but created at runtime. The supplied evaluator can be used
- * to implement e.g. transaction management.
- * 
- * @param <O>
- *            The type of the data to write.
+ * to implement custom logic, e.g. transaction management.
  */
-public final class TestDataStatement<O extends Object> extends Statement {
+public final class TestDataStatement extends Statement {
 
-    private final TestDataEvaluator<O> evaluator;
-    private final Statement            base;
-    private final Iterable<O>          dataToLoad;
+    private final Evaluator   evaluator;
+    private final Statement   base;
+    private final Description description;
 
-    public TestDataStatement(final TestDataEvaluator<O> evaluator, final Statement base, final Iterable<O> dataToLoad) {
+    /**
+     * @param evaluator
+     *            The evaluator to use.
+     * @param base
+     *            The wrapped statement.
+     * @param description
+     *            The description of the wrapped statement.
+     */
+    public TestDataStatement(final Evaluator evaluator, final Statement base, final Description description) {
         this.evaluator = evaluator;
         this.base = base;
-        this.dataToLoad = dataToLoad;
+        this.description = description;
     }
 
     /**
@@ -35,7 +41,7 @@ public final class TestDataStatement<O extends Object> extends Statement {
      */
     @Override
     public void evaluate() throws Throwable {
-        this.evaluator.evaluateStatementWithData(this.base, this.dataToLoad);
+        this.evaluator.evaluateStatementWithTestData(this.base, this.description);
     }
 
 }

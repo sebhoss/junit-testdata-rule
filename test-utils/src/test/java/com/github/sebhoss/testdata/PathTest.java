@@ -1,14 +1,22 @@
 package com.github.sebhoss.testdata;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
-@SuppressWarnings({ "static-method", "nls" })
+/**
+ * Tests for the {@link Path} API.
+ */
+@SuppressWarnings({ "nls", "static-method" })
 public class PathTest {
 
+    /**
+     * @throws Exception
+     *             In case an IO exception occurs.
+     */
     @Test
     public void findLocalSqlFile() throws Exception {
         byte[] contentInBytes = Files.readAllBytes(SqlFiles.CREATE_HANS.path);
@@ -16,6 +24,10 @@ public class PathTest {
         Assert.assertNotNull(contentInBytes);
     }
 
+    /**
+     * @throws Exception
+     *             In case an IO exception occurs.
+     */
     @Test
     public void readContents() throws Exception {
         final byte[] contentInBytes = Files.readAllBytes(SqlFiles.CREATE_HANS.path);

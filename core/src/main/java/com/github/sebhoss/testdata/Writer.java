@@ -6,14 +6,19 @@
 package com.github.sebhoss.testdata;
 
 /**
- * Possible points of time where test data should be loaded (a.k.a. "execution point").
+ * Writes test data.
+ * 
+ * @param <T>
+ *            The type of the data to write.
  */
-public enum TestDataExecutionPoint {
+public interface Writer<T> {
 
-    /** Signals that the test data must be written after the statement was evaluated. */
-    AFTER_STATEMENT,
-
-    /** Signals that the test data must be written before the statement was evaluated. */
-    BEFORE_STATEMENT;
+    /**
+     * Writes the given test data.
+     * 
+     * @param testData
+     *            The data to write.
+     */
+    void writeTestData(Iterable<T> testData);
 
 }

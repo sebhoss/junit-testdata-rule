@@ -1,4 +1,4 @@
-package com.github.sebhoss.testdata.spring;
+package com.github.sebhoss.junit.testdata.spring;
 
 import javax.sql.DataSource;
 
@@ -11,19 +11,31 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
 
+/**
+ * Database configuration for test classes. Uses a in-memory H2 database and supplies a standard {@link JdbcTemplate}.
+ */
 @Configuration
 public class TestDatabaseConfiguration {
 
+    /**
+     * @return A transaction manager.
+     */
     @Bean
     public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(this.dataSource());
     }
 
+    /**
+     * @return JDBC access.
+     */
     @Bean
     public JdbcOperations jdbcTemplate() {
         return new JdbcTemplate(this.dataSource());
     }
 
+    /**
+     * @return A datasource.
+     */
     @SuppressWarnings({ "static-method", "nls" })
     @Bean
     public DataSource dataSource() {

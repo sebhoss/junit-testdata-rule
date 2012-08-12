@@ -5,7 +5,9 @@
     <artifactId>junit-testdata-rule</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>test-utils</artifactId>
+
+  <artifactId>testdata-test-utils</artifactId>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

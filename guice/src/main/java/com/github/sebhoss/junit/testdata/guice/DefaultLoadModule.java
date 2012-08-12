@@ -8,18 +8,15 @@ package com.github.sebhoss.junit.testdata.guice;
 import com.github.sebhoss.testdata.Load;
 import com.github.sebhoss.testdata.impl.TestDataRule;
 import com.google.inject.AbstractModule;
-import com.google.inject.TypeLiteral;
 
 /**
  * Default Guice module for the {@link Load} annotation.
  */
-public class DefaultLoadTestDataModule extends AbstractModule {
+public class DefaultLoadModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        this.bind(new TypeLiteral<TestDataRule<Load, String>>() {
-            /* Type-Literal */
-        }).asEagerSingleton();
+        this.bind(TestDataRule.class).asEagerSingleton();
     }
 
 }
