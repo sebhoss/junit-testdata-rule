@@ -14,7 +14,7 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.operation.DatabaseOperation;
 
-import com.github.sebhoss.testdata.Writer;
+import com.github.sebhoss.junit.testdata.Writer;
 
 /**
  * DbUnit-based writer.

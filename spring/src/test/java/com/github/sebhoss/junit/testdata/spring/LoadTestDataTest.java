@@ -11,8 +11,7 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.sebhoss.junit.testdata.spring.DefaultLoadSqlConfiguration;
-import com.github.sebhoss.testdata.Load;
+import com.github.sebhoss.junit.testdata.Load;
 
 /**
  * Test for the default Spring configuration.
@@ -42,7 +41,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(2, numberOfCustomers);
@@ -56,7 +55,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(0, numberOfCustomers);
@@ -71,7 +70,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(2, numberOfCustomers);
@@ -86,7 +85,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(1, numberOfCustomers);

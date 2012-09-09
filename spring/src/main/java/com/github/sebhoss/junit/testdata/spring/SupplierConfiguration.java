@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.github.sebhoss.testdata.Supplier;
-import com.github.sebhoss.testdata.impl.ReadingSupplier;
+import com.github.sebhoss.junit.testdata.ReadingSupplier;
+import com.github.sebhoss.junit.testdata.Supplier;
 
 /**
  * Spring-configuration for {@link Supplier}s.

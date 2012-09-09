@@ -5,8 +5,8 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 package com.github.sebhoss.junit.testdata.guice;
 
-import com.github.sebhoss.testdata.Load;
-import com.github.sebhoss.testdata.impl.TestDataRule;
+import com.github.sebhoss.junit.testdata.Load;
+import com.github.sebhoss.junit.testdata.TestData;
 import com.google.inject.AbstractModule;
 
 /**
@@ -16,7 +16,7 @@ public class DefaultLoadModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        this.bind(TestDataRule.class).asEagerSingleton();
+        this.bind(TestData.class).asEagerSingleton();
     }
 
 }

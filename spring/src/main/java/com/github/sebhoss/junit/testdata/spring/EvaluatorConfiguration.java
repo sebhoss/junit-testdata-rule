@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.github.sebhoss.testdata.Evaluator;
-import com.github.sebhoss.testdata.ExecutionPoint;
-import com.github.sebhoss.testdata.impl.TestDataEvaluator;
+import com.github.sebhoss.junit.testdata.Evaluator;
+import com.github.sebhoss.junit.testdata.ExecutionPoint;
+import com.github.sebhoss.junit.testdata.SuppliedWritingEvaluator;
 
 /**
  * Spring-configuration for {@link Evaluator}s.
@@ -33,7 +33,7 @@ public class EvaluatorConfiguration {
      */
     @Bean
     public Evaluator sqlBeforeStatementEvaluator() {
-        return new TestDataEvaluator<>(this.supplier.loadSqlSupplier(), this.sql.batchSqlWriter(),
+        return new SuppliedWritingEvaluator<>(this.supplier.loadSqlSupplier(), this.sql.batchSqlWriter(),
                 ExecutionPoint.BEFORE_STATEMENT);
     }
 

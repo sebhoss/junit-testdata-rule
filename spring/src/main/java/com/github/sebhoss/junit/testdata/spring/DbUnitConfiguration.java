@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.Writer;
 import com.github.sebhoss.junit.testdata.dbunit.DbUnitReader;
 import com.github.sebhoss.junit.testdata.dbunit.DbUnitWriter;
-import com.github.sebhoss.testdata.Reader;
-import com.github.sebhoss.testdata.Writer;
 
 /**
  * Spring configuration for DBUnit classes.

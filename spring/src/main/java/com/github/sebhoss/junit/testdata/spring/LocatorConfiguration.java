@@ -8,8 +8,8 @@ package com.github.sebhoss.junit.testdata.spring;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.github.sebhoss.testdata.Locator;
-import com.github.sebhoss.testdata.impl.LoadLocator;
+import com.github.sebhoss.junit.testdata.LoadLocator;
+import com.github.sebhoss.junit.testdata.Locator;
 
 /**
  * Spring-configuration for {@link Locator}s.

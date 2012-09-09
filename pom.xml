@@ -12,10 +12,19 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  
+
   <prerequisites>
     <maven>3.0.0</maven>
   </prerequisites>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!--                                 PARENT                                  -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <parent>
+    <groupId>com.github.sebhoss.maven</groupId>
+    <artifactId>superpom</artifactId>
+    <version>1</version>
+  </parent>
 
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <!--                               INFORMATIONS                              -->
@@ -25,7 +34,6 @@
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <inceptionYear>2012</inceptionYear>
-  <url>http://github.com/sebhoss/junit-testdata-rule</url>
   <name>JUnit test data rule</name>
   <description>TestRule which load data before the execution of tests.</description>
 
@@ -41,212 +49,4 @@
     <module>guice</module>
   </modules>
 
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                 LICENSE                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <licenses>
-    <license>
-      <name>WTFPL - Do What The Fuck You Want To Public License</name>
-      <url>http://sam.zoy.org/wtfpl/COPYING</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                  SOURCE                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <scm>
-    <connection>scm:git:git://github.com/sebhoss/junit-testdata-rule.git</connection>
-    <developerConnection>scm:git:git@github.com:sebhoss/junit-testdata-rule.git</developerConnection>
-    <tag>master</tag>
-    <url>http://github.com/sebhoss/junit-testdata-rule</url>
-  </scm>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                  ISSUES                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <issueManagement>
-    <system>GitHub</system>
-    <url>${project.url}/issues</url>
-  </issueManagement>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                DEVELOPERS                               -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <developers>
-    <developer>
-      <id>HoS</id>
-      <name>Sebastian Hoß</name>
-      <email>mail@shoss.de</email>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>1</timezone>
-    </developer>
-  </developers>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                PROPERTIES                               -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <properties>
-    <global.encoding>UTF-8</global.encoding>
-    <global.java>1.7</global.java>
-    <coverage>0</coverage>
-
-    <project.build.sourceEncoding>${global.encoding}</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>${global.encoding}</project.reporting.outputEncoding>
-  </properties>
-
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <!--                                   BUILD                                 -->
-  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.3.7</version>
-        <executions>
-          <execution>
-            <id>bundle-manifest</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>manifest</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <instructions>
-            <Bundle-Copyright>Sebastian Hoß (mail@shoss.de)</Bundle-Copyright>
-            <Bundle-Category>DbC</Bundle-Category>
-            <Bundle-DocURL>${project.url}</Bundle-DocURL>
-            <Bundle-RequiredExecutionEnvironment>JavaSE-1.7</Bundle-RequiredExecutionEnvironment>
-          </instructions>
-        </configuration>
-      </plugin>
-
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>2.1.2</version>
-        <configuration>
-          <archive>
-            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-          </archive>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <outputDirectory>${project.build.directory}/api</outputDirectory>
-          <archive>
-            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-          </archive>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
-        <configuration>
-          <source>${global.java}</source>
-          <target>${global.java}</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <archive>
-            <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-          </archive>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.5</version>
-        <configuration>
-          <effort>Max</effort>
-          <threshold>Low</threshold>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-pmd-plugin</artifactId>
-        <version>2.7.1</version>
-        <configuration>
-          <failurePriority>0</failurePriority>
-          <minimumTokens>24</minimumTokens>
-          <targetJdk>${global.java}</targetJdk>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-              <goal>cpd-check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.5.1</version>
-        <configuration>
-          <check>
-            <haltOnFailure>true</haltOnFailure>
-            <branchRate>${coverage}</branchRate>
-            <lineRate>${coverage}</lineRate>
-            <totalBranchRate>${coverage}</totalBranchRate>
-            <totalLineRate>${coverage}</totalLineRate>
-            <packageLineRate>${coverage}</packageLineRate>
-            <packageBranchRate>${coverage}</packageBranchRate>
-          </check>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>clean</goal>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>

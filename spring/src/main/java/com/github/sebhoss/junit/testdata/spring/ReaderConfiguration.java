@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 
-import com.github.sebhoss.testdata.Reader;
-import com.github.sebhoss.testdata.impl.StatementReader;
+import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.StatementReader;
 
 /**
  * Spring-configuration for {@link Reader}s.

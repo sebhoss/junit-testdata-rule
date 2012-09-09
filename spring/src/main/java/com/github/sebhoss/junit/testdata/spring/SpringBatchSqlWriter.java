@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcOperations;
 
-import com.github.sebhoss.testdata.Writer;
+import com.github.sebhoss.junit.testdata.Writer;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 

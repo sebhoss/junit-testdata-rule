@@ -10,8 +10,8 @@ import javax.inject.Inject;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
-import com.github.sebhoss.testdata.Reader;
-import com.github.sebhoss.testdata.impl.StatementReader;
+import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.StatementReader;
 import com.google.common.collect.Lists;
 
 /**

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.github.sebhoss.testdata.Evaluator;
+import com.github.sebhoss.junit.testdata.Evaluator;
 
 /**
  * Default Spring-configuration for the Load annotation for loading SQL data from <em>.sql</em> files.
