@@ -1,26 +1,40 @@
-h1. junit-testdata-rule
+h1. JUnit Testdata Rule
 
-p. JUnit TestRule to load data into a database before a test runs.
+p. JUnit "@TestRule@":http://kentbeck.github.com/junit/javadoc/4.10/org/junit/rules/TestRule.html to load data into a database before a test runs.
+
+p. Testdata can either specified on a per test basis, or with the help of "@ClassRule@":http://kentbeck.github.com/junit/javadoc/4.10/org/junit/ClassRule.html for a whole class (which may be a JUnit Testsuite which contains several other classes). However the main audience of this module are projects which want/need specific "data for a single test":http://github.com/sebhoss/junit-testdata-rule/wiki/why. There are "several alternatives":http://github.com/sebhoss/junit-testdata-rule/wiki/alternatives for this module.
 
 h2. Usage
 
 bc.. 
-  public class YourTestCase {
-  
+  public class YourTestClass {
+
     @Rule
     public TestData testData = ...;
-    
+
     @Test
     @Load("customers.sql")
     public void shouldSeeCustomersInDatabase() {
       // ...
     }
-  
-  }
-  
-h2. Integration
 
-p. Spring & Guice have their own module. It supplies a default configuration for the TestData rule which should be suitable for the majority of use-cases.
+  }
+
+h3. Supported file formats
+
+* *.SQL* files for arbitrary SQL statements.
+* *.XML* files created with the "DbUnit":http://www.dbunit.org/ schema.
+* *.XML* files created with the "Liquibase":http://www.liquibase.org/ schema.
+* "Create an issue for your desired format":https://github.com/sebhoss/junit-testdata-rule/issues
+
+h3. Integration
+
+p. Spring & Guice have their own module. Both supply a default configuration for the TestData rule which should be suitable for the majority of use-cases. Additional factories/builders are available for projects which do not use Spring or Guice. See the following pages for more details:
+
+* "Spring based projects":http://github.com/sebhoss/junit-testdata-rule/wiki/spring
+* "Guice based projects":http://github.com/sebhoss/junit-testdata-rule/wiki/guice
+* "Standalone projects":http://github.com/sebhoss/junit-testdata-rule/wiki/builder
+
 
 h2. Development
 
