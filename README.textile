@@ -24,7 +24,7 @@ h3. Supported file formats
 
 * *.SQL* files for arbitrary SQL statements.
 * *.XML* files created with the "DbUnit":http://www.dbunit.org/ schema.
-* *.XML* files created with the "Liquibase":http://www.liquibase.org/ schema.
+* *.XML* files created with the "Liquibase":http://www.liquibase.org/ "schema":http://www.liquibase.org/manual/databasechangelog.
 * "Create an issue for your desired format":https://github.com/sebhoss/junit-testdata-rule/issues
 
 h3. Integration
