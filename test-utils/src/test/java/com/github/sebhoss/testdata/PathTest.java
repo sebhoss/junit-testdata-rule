@@ -3,8 +3,7 @@ package com.github.sebhoss.testdata;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -19,7 +18,7 @@ public class PathTest {
      */
     @Test
     public void findLocalSqlFile() throws Exception {
-        byte[] contentInBytes = Files.readAllBytes(SqlFiles.CREATE_HANS.path);
+        final byte[] contentInBytes = Files.readAllBytes(SqlFiles.CREATE_HANS.path);
 
         Assert.assertNotNull(contentInBytes);
     }
