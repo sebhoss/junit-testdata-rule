@@ -37,12 +37,12 @@
   <!--                                 MODULES                                 -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <modules>
-    <module>core</module>
-    <module>test-utils</module>
-    <module>builder</module>
-    <module>spring</module>
-    <module>dbunit</module>
-    <module>guice</module>
+    <module>testdata-core</module>
+    <module>testdata-test-utils</module>
+    <module>testdata-builder</module>
+    <module>testdata-spring</module>
+    <module>testdata-dbunit</module>
+    <module>testdata-guice</module>
   </modules>
 
 </project>
