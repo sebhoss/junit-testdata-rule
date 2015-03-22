@@ -1,18 +1,18 @@
-/* This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+/*
+ * Copyright © 2012 Sebastian Hoß <mail@shoss.de>
+ * This work is free. You can redistribute it and/or modify it under the
+ * terms of the Do What The Fuck You Want To Public License, Version 2,
+ * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.junit.testdata;
 
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
- * Special {@link Statement statement} which loads test data with the help of a {@link Evaluator}.
- * 
- * TestDataStatement instances are not meant to be injected but created at runtime. The supplied evaluator can be used
- * to implement custom logic, e.g. transaction management.
+ * Special {@link Statement statement} which loads test data with the help of a {@link Evaluator}. TestDataStatement
+ * instances are not meant to be injected but created at runtime. The supplied evaluator can be used to implement custom
+ * logic, e.g. transaction management.
  */
 public final class TestDataStatement extends Statement {
 
@@ -39,7 +39,7 @@ public final class TestDataStatement extends Statement {
      */
     @Override
     public void evaluate() throws Throwable {
-        this.evaluator.evaluateStatementWithTestData(this.base, this.description);
+        evaluator.evaluateStatementWithTestData(base, description);
     }
 
 }

@@ -1,6 +1,14 @@
+/*
+ * Copyright © 2012 Sebastian Hoß <mail@shoss.de>
+ * This work is free. You can redistribute it and/or modify it under the
+ * terms of the Do What The Fuck You Want To Public License, Version 2,
+ * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.junit.testdata.spring;
 
 import javax.inject.Inject;
+
+import com.github.sebhoss.junit.testdata.Load;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -11,8 +19,6 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.github.sebhoss.junit.testdata.Load;
-
 /**
  * Test for the default Spring configuration.
  */
@@ -20,7 +26,7 @@ import com.github.sebhoss.junit.testdata.Load;
 @ContextConfiguration(classes = { DefaultLoadSqlConfiguration.class, TestDatabaseConfiguration.class })
 public final class LoadTestDataTest {
 
-    private static final String CUSTOMER_COUNT = "SELECT COUNT(*) FROM customers";
+    private static final String CUSTOMER_COUNT = "SELECT COUNT(*) FROM customers"; //$NON-NLS-1$
 
     /** A test-data rule which inspects tests annotated with @Load. */
     @Inject
@@ -40,10 +46,10 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final Integer numberOfCustomers = jdbcOperations.queryForObject(CUSTOMER_COUNT, Integer.class);
 
         // then
-        Assert.assertEquals(2, numberOfCustomers);
+        Assert.assertEquals(2, numberOfCustomers.intValue());
     }
 
     /**
@@ -54,10 +60,10 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final Integer numberOfCustomers = jdbcOperations.queryForObject(CUSTOMER_COUNT, Integer.class);
 
         // then
-        Assert.assertEquals(0, numberOfCustomers);
+        Assert.assertEquals(0, numberOfCustomers.intValue());
     }
 
     /**
@@ -69,10 +75,10 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final Integer numberOfCustomers = jdbcOperations.queryForObject(CUSTOMER_COUNT, Integer.class);
 
         // then
-        Assert.assertEquals(2, numberOfCustomers);
+        Assert.assertEquals(2, numberOfCustomers.intValue());
     }
 
     /**
@@ -84,10 +90,10 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
+        final Integer numberOfCustomers = jdbcOperations.queryForObject(CUSTOMER_COUNT, Integer.class);
 
         // then
-        Assert.assertEquals(1, numberOfCustomers);
+        Assert.assertEquals(1, numberOfCustomers.intValue());
     }
 
 }

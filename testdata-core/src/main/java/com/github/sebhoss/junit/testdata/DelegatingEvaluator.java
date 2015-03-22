@@ -1,8 +1,9 @@
-/* This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+/*
+ * Copyright © 2012 Sebastian Hoß <mail@shoss.de>
+ * This work is free. You can redistribute it and/or modify it under the
+ * terms of the Do What The Fuck You Want To Public License, Version 2,
+ * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.junit.testdata;
 
 import java.util.List;
@@ -30,23 +31,13 @@ public class DelegatingEvaluator implements Evaluator {
 
     @Override
     public boolean hasTestDataFor(final Description description) {
-        boolean testDataAvailable = false;
-
-        for (final Evaluator evaluator : this.evaluators) {
-            testDataAvailable |= evaluator.hasTestDataFor(description);
-
-            if (testDataAvailable) {
-                break;
-            }
-        }
-
-        return testDataAvailable;
+        return evaluators.stream().anyMatch(evaluator -> evaluator.hasTestDataFor(description));
     }
 
     @Override
     public void evaluateStatementWithTestData(final Statement statement, final Description description)
             throws Throwable {
-        for (final Evaluator evaluator : this.evaluators) {
+        for (final Evaluator evaluator : evaluators) {
             if (evaluator.hasTestDataFor(description)) {
                 evaluator.evaluateStatementWithTestData(statement, description);
             }

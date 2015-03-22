@@ -1,8 +1,9 @@
-/* This program is free software. It comes without any warranty, to
- * the extent permitted by applicable law. You can redistribute it
- * and/or modify it under the terms of the Do What The Fuck You Want
- * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */
+/*
+ * Copyright © 2012 Sebastian Hoß <mail@shoss.de>
+ * This work is free. You can redistribute it and/or modify it under the
+ * terms of the Do What The Fuck You Want To Public License, Version 2,
+ * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.junit.testdata.guice;
 
 import java.nio.charset.Charset;
@@ -24,6 +25,7 @@ import com.github.sebhoss.junit.testdata.SuppliedWritingEvaluator;
 import com.github.sebhoss.junit.testdata.Supplier;
 import com.github.sebhoss.junit.testdata.TransactionalEvaluator;
 import com.github.sebhoss.junit.testdata.Writer;
+import com.google.common.base.Charsets;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.TypeLiteral;
@@ -33,6 +35,7 @@ import com.google.inject.TypeLiteral;
  */
 public class DefaultLoadModule extends AbstractModule {
 
+    @SuppressWarnings("synthetic-access")
     @Override
     protected void configure() {
         // Evaluator
@@ -49,8 +52,8 @@ public class DefaultLoadModule extends AbstractModule {
 
         // Statements
         this.bind(StatementReader.class);
-        this.bind(Charset.class).toInstance(Charset.forName("UTF-8"));
-        this.bind(String.class).toInstance(";");
+        this.bind(Charset.class).toInstance(Charsets.UTF_8);
+        this.bind(String.class).toInstance(";"); //$NON-NLS-1$
 
         // Writer
         this.bind(new StringWriter()).to(BatchSqlWriter.class);
@@ -66,6 +69,7 @@ public class DefaultLoadModule extends AbstractModule {
      *            The evaluator to use.
      * @return A transactional evaluator.
      */
+    @SuppressWarnings("static-method")
     @Provides
     @Singleton
     public Evaluator transactionalEvaluator(final TransactionManager transactionManager,

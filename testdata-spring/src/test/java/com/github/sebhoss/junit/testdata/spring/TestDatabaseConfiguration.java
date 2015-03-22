@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2012 Sebastian Hoß <mail@shoss.de>
+ * This work is free. You can redistribute it and/or modify it under the
+ * terms of the Do What The Fuck You Want To Public License, Version 2,
+ * as published by Sam Hocevar. See http://www.wtfpl.net/ for more details.
+ */
 package com.github.sebhoss.junit.testdata.spring;
 
 import javax.sql.DataSource;
@@ -23,7 +29,7 @@ public class TestDatabaseConfiguration {
      */
     @Bean
     public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(this.dataSource());
+        return new DataSourceTransactionManager(dataSource());
     }
 
     /**
@@ -31,16 +37,17 @@ public class TestDatabaseConfiguration {
      */
     @Bean
     public JdbcOperations jdbcTemplate() {
-        return new JdbcTemplate(this.dataSource());
+        return new JdbcTemplate(dataSource());
     }
 
     /**
      * @return A datasource.
      */
     @Bean
+    @SuppressWarnings("static-method")
     public DataSource dataSource() {
         final EmbeddedDatabase database = new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
-                .addScript("classpath:/schema/defaultSchema.sql").build();
+                .addScript("classpath:/schema/defaultSchema.sql").build(); //$NON-NLS-1$
         return database;
     }
 }
