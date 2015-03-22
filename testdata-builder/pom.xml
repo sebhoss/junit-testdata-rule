@@ -28,7 +28,6 @@
     <dependency>
       <groupId>com.github.sebhoss.junit</groupId>
       <artifactId>testdata-core</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>

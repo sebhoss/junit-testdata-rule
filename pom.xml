@@ -46,6 +46,8 @@
   <!--                                PROPERTIES                               -->
   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   <properties>
+    <version.bom>3.0.4</version.bom>
+
     <coverage>0.50000</coverage>
   </properties>
 
@@ -57,28 +59,35 @@
       <dependency>
         <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>java-bom</artifactId>
-        <version>3.0.4</version>
+        <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>javax-bom</artifactId>
-        <version>3.0.4</version>
+        <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>testing-bom</artifactId>
-        <version>3.0.4</version>
+        <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.github.sebhoss.bom</groupId>
         <artifactId>database-bom</artifactId>
-        <version>3.0.4</version>
+        <version>${version.bom}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.github.sebhoss.bom</groupId>
+        <artifactId>guice-bom</artifactId>
+        <version>${version.bom}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -88,6 +97,32 @@
         <version>4.1.5.RELEASE</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.sebhoss.junit</groupId>
+        <artifactId>testdata-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.sebhoss.junit</groupId>
+        <artifactId>testdata-builder</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.sebhoss.junit</groupId>
+        <artifactId>testdata-dbunit</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.sebhoss.junit</groupId>
+        <artifactId>testdata-guice</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.sebhoss.junit</groupId>
+        <artifactId>testdata-spring</artifactId>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
