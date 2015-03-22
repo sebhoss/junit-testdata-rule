@@ -14,10 +14,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *
+ * Configuration of DbUnit file loaders.
  */
 @Configuration
-@SuppressWarnings("static-method")
 public class DbUnitLoaderConfiguration {
 
     /**

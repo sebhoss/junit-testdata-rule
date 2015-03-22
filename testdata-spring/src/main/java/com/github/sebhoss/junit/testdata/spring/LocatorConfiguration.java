@@ -15,7 +15,6 @@ import com.github.sebhoss.junit.testdata.Locator;
  * Spring-configuration for {@link Locator}s.
  */
 @Configuration
-@SuppressWarnings("static-method")
 public class LocatorConfiguration {
 
     /**

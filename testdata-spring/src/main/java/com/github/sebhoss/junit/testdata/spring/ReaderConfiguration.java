@@ -5,8 +5,6 @@
  * http://sam.zoy.org/wtfpl/COPYING for more details. */
 package com.github.sebhoss.junit.testdata.spring;
 
-import java.nio.charset.Charset;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -14,12 +12,12 @@ import org.springframework.core.io.ResourceLoader;
 
 import com.github.sebhoss.junit.testdata.Reader;
 import com.github.sebhoss.junit.testdata.StatementReader;
+import com.google.common.base.Charsets;
 
 /**
  * Spring-configuration for {@link Reader}s.
  */
 @Configuration
-@SuppressWarnings("static-method")
 public class ReaderConfiguration {
 
     /**
@@ -41,10 +39,9 @@ public class ReaderConfiguration {
     /**
      * @return A statement reader.
      */
-    @SuppressWarnings("nls")
     @Bean
     public StatementReader statementReader() {
-        return new StatementReader(Charset.forName("UTF-8"), ";");
+        return new StatementReader(Charsets.UTF_8, ";");
     }
 
 }

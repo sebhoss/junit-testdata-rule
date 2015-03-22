@@ -18,7 +18,6 @@ import com.github.sebhoss.junit.testdata.Load;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { DefaultLoadSqlConfiguration.class, TestDatabaseConfiguration.class })
-@SuppressWarnings("nls")
 public final class LoadTestDataTest {
 
     private static final String CUSTOMER_COUNT = "SELECT COUNT(*) FROM customers";
@@ -41,7 +40,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(2, numberOfCustomers);
@@ -55,7 +54,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(0, numberOfCustomers);
@@ -70,7 +69,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(2, numberOfCustomers);
@@ -85,7 +84,7 @@ public final class LoadTestDataTest {
         // given
 
         // when
-        final int numberOfCustomers = this.jdbcOperations.queryForInt(LoadTestDataTest.CUSTOMER_COUNT);
+        final int numberOfCustomers = this.jdbcOperations.queryForInt(CUSTOMER_COUNT);
 
         // then
         Assert.assertEquals(1, numberOfCustomers);

@@ -42,7 +42,7 @@ public final class TransactionalEvaluator implements Evaluator {
     @Override
     public void evaluateStatementWithTestData(final Statement statement, final Description description)
             throws Throwable {
-        final TransactionStatus transaction = this.transactionManager.getTransaction(null);
+        final TransactionStatus transaction = this.transactionManager.getTransaction(null); // Defaults
 
         this.evaluator.evaluateStatementWithTestData(statement, description);
 

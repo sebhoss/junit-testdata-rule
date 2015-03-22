@@ -13,7 +13,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
- * Delegates calls to a list of given evaluators. Only the first matching evaluator will be called.
+ * Delegates calls to a list of given evaluators. All matching evaluators will be called.
  */
 public class DelegatingEvaluator implements Evaluator {
 
@@ -49,7 +49,6 @@ public class DelegatingEvaluator implements Evaluator {
         for (final Evaluator evaluator : this.evaluators) {
             if (evaluator.hasTestDataFor(description)) {
                 evaluator.evaluateStatementWithTestData(statement, description);
-                break;
             }
         }
     }
