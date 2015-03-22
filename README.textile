@@ -1,3 +1,47 @@
-h1. JUnit Testdata Rule
+h1. JUnit Testdata Rule "!https://secure.travis-ci.org/sebhoss/junit-testdata-rule.png!":http://travis-ci.org/sebhoss/junit-testdata-rule "!https://www.ohloh.net/p/junit-testdata-rule/widgets/project_thin_badge.gif!":https://www.ohloh.net/p/junit-testdata-rule/
 
 p. JUnit "@TestRule@":https://github.com/junit-team/junit/wiki/Rules to load data into a database before a test runs.
+
+p. Testdata can either specified on a per test basis, or with the help of "@ClassRule@":https://github.com/junit-team/junit/wiki/Rules#classrule for a whole class (which may be a JUnit Testsuite which contains several other classes). However the main audience of this module are projects which want/need specific "data for a single test":http://github.com/sebhoss/junit-testdata-rule/wiki/why. There are "several alternatives":http://github.com/sebhoss/junit-testdata-rule/wiki/alternatives for this module.
+
+h2. Usage
+
+bc.. 
+  public class YourTestClass {
+
+    @Rule
+    public TestData testData = ...;
+
+    @Test
+    @Load("customers.sql")
+    public void shouldSeeCustomersInDatabase() {
+      // ...
+    }
+
+    @Test
+    @Load("orders.sql")
+    public void shouldSeeOrdersInDatabase() {
+      // ...
+    }
+
+  }
+
+h3. Supported file formats
+
+* *.SQL* files for arbitrary SQL statements.
+* "Create an issue for your desired format":https://github.com/sebhoss/junit-testdata-rule/issues
+
+
+h2. Development
+
+h3. License
+
+p. This program is free software. It comes without any warranty, to the extent permitted by applicable law. You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by Sam Hocevar. See "http://sam.zoy.org/wtfpl/COPYING":http://sam.zoy.org/wtfpl/COPYING for more details.
+
+h3. Setup
+
+p. This project is using "Maven":http://maven.apache.org/, "Eclipse":http://eclipse.org/ and "Git":http://git-scm.com/ as the main development tools. To build the project yourself just download & install at least Maven 3.0 and call *mvn install* inside the project folder. Maven should then proceed to clean, build, package and install this module.
+
+h3. Versioning
+
+p. This project follows the "semantic versioning":http://semver.org/ guidelines.
