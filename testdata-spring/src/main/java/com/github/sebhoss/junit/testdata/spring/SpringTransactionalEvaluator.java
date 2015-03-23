@@ -16,9 +16,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 
 /**
- * Transactional test-data evaluator.
+ * Transactional test-data evaluator using Springs {@link PlatformTransactionManager}.
  */
-public final class TransactionalEvaluator implements Evaluator {
+public final class SpringTransactionalEvaluator implements Evaluator {
 
     private final PlatformTransactionManager transactionManager;
     private final Evaluator                  evaluator;
@@ -30,7 +30,7 @@ public final class TransactionalEvaluator implements Evaluator {
      *            The evaluator to use.
      */
     @Inject
-    public TransactionalEvaluator(
+    public SpringTransactionalEvaluator(
             final PlatformTransactionManager transactionManager,
             final Evaluator evaluator) {
         this.transactionManager = transactionManager;
@@ -45,8 +45,7 @@ public final class TransactionalEvaluator implements Evaluator {
     @Override
     public void evaluateStatementWithTestData(final Statement statement,
             final Description description) throws Throwable {
-        final TransactionStatus transaction = transactionManager
-                .getTransaction(null); // Defaults
+        final TransactionStatus transaction = transactionManager.getTransaction(null); // Defaults
 
         evaluator.evaluateStatementWithTestData(statement, description);
 
