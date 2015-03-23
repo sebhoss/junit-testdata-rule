@@ -6,8 +6,10 @@
  */
 package com.github.sebhoss.junit.testdata;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.runner.Description;
 
@@ -19,16 +21,28 @@ public final class LoadLocator implements Locator {
     @Override
     public boolean canAccess(final Description description) {
         final Load load = description.getAnnotation(Load.class);
+        final Loading loading = description.getAnnotation(Loading.class);
 
-        return load != null;
+        return load != null || loading != null;
     }
 
     @Override
     public List<String> locateFilesToLoad(final Description description) {
         final Load load = description.getAnnotation(Load.class);
-        final String[] locations = load.value();
+        final Loading loading = description.getAnnotation(Loading.class);
 
-        return Arrays.asList(locations);
+        return retrieveLocations(load, loading);
+    }
+
+    private static List<String> retrieveLocations(final Load load, final Loading loading) {
+        if (load != null) {
+            return Arrays.asList(load.value());
+        }
+
+        return Arrays.stream(loading.value())
+                .map(loadData -> loadData.value())
+                .map(locations -> Arrays.stream(locations).collect(Collectors.toList()))
+                .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
     }
 
 }
