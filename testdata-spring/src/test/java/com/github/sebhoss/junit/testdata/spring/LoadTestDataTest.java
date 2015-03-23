@@ -96,4 +96,35 @@ public final class LoadTestDataTest {
         Assert.assertEquals(1, numberOfCustomers.intValue());
     }
 
+    /**
+     * Test ensures that repeating annotations are supported
+     */
+    @Test
+    @Load("classpath:/testdata/new customers.sql")
+    @Load("classpath:/testdata/mafia.sql")
+    public void shouldSupportRepeatingAnnotations() {
+        // given
+
+        // when
+        final Integer numberOfCustomers = jdbcOperations.queryForObject(CUSTOMER_COUNT, Integer.class);
+
+        // then
+        Assert.assertEquals(3, numberOfCustomers.intValue());
+    }
+
+    /**
+     * Test ensures that repeating annotations are supported
+     */
+    @Test
+    @Load({ "classpath:/testdata/new customers.sql", "classpath:/testdata/mafia.sql" })
+    public void shouldSupportMultipleLocationsWithinOneAnnotation() {
+        // given
+
+        // when
+        final Integer numberOfCustomers = jdbcOperations.queryForObject(CUSTOMER_COUNT, Integer.class);
+
+        // then
+        Assert.assertEquals(3, numberOfCustomers.intValue());
+    }
+
 }
