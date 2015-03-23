@@ -8,23 +8,21 @@ package com.github.sebhoss.junit.testdata;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An annotation which can be used to specify test data which should be loaded in conjunction with a test.
+ * Container annotation to allow repeated usage of the {@link Load} annotation
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@Repeatable(Loading.class)
-public @interface Load {
+public @interface Loading {
 
     /**
-     * @return The locations of the test data to load.
+     * @return The contained {@link Load} annotations of this container
      */
-    String[] value();
+    Load[] value();
 
 }
