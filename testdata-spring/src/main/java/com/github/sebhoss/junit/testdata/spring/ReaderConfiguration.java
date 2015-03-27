@@ -10,6 +10,7 @@ import com.github.sebhoss.junit.testdata.Reader;
 import com.github.sebhoss.junit.testdata.StatementReader;
 import com.google.common.base.Charsets;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -25,6 +26,7 @@ public class ReaderConfiguration {
      * @return A Spring-based reader for statements.
      */
     @Bean
+    @ConditionalOnMissingBean(Reader.class)
     public Reader<String> sqlReader() {
         return new SpringStatementReader(resourceLoader(), statementReader());
     }
@@ -34,6 +36,7 @@ public class ReaderConfiguration {
      */
     @Bean
     @SuppressWarnings("static-method")
+    @ConditionalOnMissingBean(ResourceLoader.class)
     public ResourceLoader resourceLoader() {
         return new DefaultResourceLoader();
     }
@@ -43,6 +46,7 @@ public class ReaderConfiguration {
      */
     @Bean
     @SuppressWarnings("static-method")
+    @ConditionalOnMissingBean(StatementReader.class)
     public StatementReader statementReader() {
         return new StatementReader(Charsets.UTF_8, ";"); //$NON-NLS-1$
     }

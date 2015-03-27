@@ -31,12 +31,12 @@ public class GeneratingSupplier<T> implements Supplier<T> {
 
     @Override
     public boolean hasTestDataFor(final Description description) {
-        return this.generator.canGenerate(description);
+        return generator.canGenerate(description);
     }
 
     @Override
     public List<T> getTestData(final Description description) {
-        return this.generator.generateTestData(description);
+        return generator.generateTestData(description);
     }
 
 }

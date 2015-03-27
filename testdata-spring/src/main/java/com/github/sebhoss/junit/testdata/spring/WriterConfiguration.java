@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import com.github.sebhoss.junit.testdata.Writer;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -27,6 +28,7 @@ public class WriterConfiguration {
      * @return A Spring-based SQL writer.
      */
     @Bean
+    @ConditionalOnMissingBean(Writer.class)
     public Writer<String> batchSqlWriter() {
         return new SpringJdbcBatchSqlWriter(jdbcTemplate);
     }

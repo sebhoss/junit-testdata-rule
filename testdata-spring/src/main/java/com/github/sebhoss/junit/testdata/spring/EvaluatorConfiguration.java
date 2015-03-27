@@ -12,6 +12,7 @@ import com.github.sebhoss.junit.testdata.Evaluator;
 import com.github.sebhoss.junit.testdata.ExecutionPoint;
 import com.github.sebhoss.junit.testdata.SuppliedWritingEvaluator;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -33,6 +34,7 @@ public class EvaluatorConfiguration {
      * @return An evaluator which reads and writes SQL statements before the test is executed.
      */
     @Bean
+    @ConditionalOnMissingBean(Evaluator.class)
     public Evaluator sqlBeforeStatementEvaluator() {
         return new SuppliedWritingEvaluator<>(supplier.loadSqlSupplier(),
                 sql.batchSqlWriter(), ExecutionPoint.BEFORE_STATEMENT);

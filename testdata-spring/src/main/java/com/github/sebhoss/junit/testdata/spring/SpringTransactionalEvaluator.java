@@ -45,7 +45,7 @@ public final class SpringTransactionalEvaluator implements Evaluator {
     @Override
     public void evaluateStatementWithTestData(final Statement statement,
             final Description description) throws Throwable {
-        final TransactionStatus transaction = transactionManager.getTransaction(null); // Defaults
+        final TransactionStatus transaction = transactionManager.getTransaction(null); // defaults
 
         evaluator.evaluateStatementWithTestData(statement, description);
 

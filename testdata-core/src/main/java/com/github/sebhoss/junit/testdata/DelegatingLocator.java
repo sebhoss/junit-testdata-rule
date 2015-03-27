@@ -34,6 +34,7 @@ public final class DelegatingLocator implements Locator {
     @Override
     public List<String> locateFilesToLoad(final Description description) {
         return locators.stream()
+                .filter(locator -> locator.canAccess(description))
                 .flatMap(locator -> locator.locateFilesToLoad(description).stream())
                 .collect(Collectors.toList());
     }

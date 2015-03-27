@@ -41,7 +41,7 @@ public final class SuppliedWritingEvaluator<T> implements Evaluator {
 
     @Override
     public boolean hasTestDataFor(final Description description) {
-        return this.supplier.hasTestDataFor(description);
+        return supplier.hasTestDataFor(description);
     }
 
     @Override
@@ -49,13 +49,13 @@ public final class SuppliedWritingEvaluator<T> implements Evaluator {
             throws Throwable {
         final List<T> testData = this.supplier.getTestData(description);
 
-        if (ExecutionPoint.BEFORE_STATEMENT == this.executionPoint) {
+        if (ExecutionPoint.BEFORE_STATEMENT == executionPoint) {
             this.writer.writeTestData(testData);
         }
 
         statement.evaluate();
 
-        if (ExecutionPoint.AFTER_STATEMENT == this.executionPoint) {
+        if (ExecutionPoint.AFTER_STATEMENT == executionPoint) {
             this.writer.writeTestData(testData);
         }
     }

@@ -6,9 +6,14 @@
  */
 package com.github.sebhoss.junit.testdata.spring;
 
+import java.util.Arrays;
+
+import com.github.sebhoss.junit.testdata.DelegatingLocator;
 import com.github.sebhoss.junit.testdata.LoadLocator;
+import com.github.sebhoss.junit.testdata.LoadingLocator;
 import com.github.sebhoss.junit.testdata.Locator;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,12 +24,23 @@ import org.springframework.context.annotation.Configuration;
 public class LocatorConfiguration {
 
     /**
-     * @return A locator for the Load annotation.
+     * @return A locator for the delegating locator. Currently delegates its call to all the other available locators in
+     *         this class. Therefore its wise to inject this locator instead of the other onces.
      */
     @Bean
+    @ConditionalOnMissingBean(Locator.class)
+    public Locator delegatingLocator() {
+        return new DelegatingLocator(Arrays.asList(loadLocator(), loadingLocator()));
+    }
+
     @SuppressWarnings("static-method")
-    public Locator loadLocator() {
+    private Locator loadLocator() {
         return new LoadLocator();
+    }
+
+    @SuppressWarnings("static-method")
+    private Locator loadingLocator() {
+        return new LoadingLocator();
     }
 
 }
