@@ -6,13 +6,11 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
-
-import com.google.common.collect.Lists;
 
 /**
  * Test-data reader based on the Java 7 NIO API using a {@link StatementReader}.
@@ -32,16 +30,10 @@ public final class PathBasedStatementReader implements Reader<String> {
 
     @Override
     public List<String> readLocations(final List<String> resourceLocations) {
-        final List<String> allStatements = Lists.newArrayList();
-
-        for (final String location : resourceLocations) {
-            final Path pathToFile = Paths.get(location);
-            final List<String> statement = reader.readStatementsFrom(pathToFile);
-
-            allStatements.addAll(statement);
-        }
-
-        return allStatements;
+        return resourceLocations.stream()
+                .map(Paths::get)
+                .flatMap(pathToFile -> reader.readStatementsFrom(pathToFile).stream())
+                .collect(Collectors.toList());
     }
 
 }
