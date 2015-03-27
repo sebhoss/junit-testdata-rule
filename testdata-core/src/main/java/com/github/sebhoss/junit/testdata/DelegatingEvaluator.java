@@ -37,6 +37,7 @@ public class DelegatingEvaluator implements Evaluator {
     @Override
     public void evaluateStatementWithTestData(final Statement statement, final Description description)
             throws Throwable {
+        // can't use streams because we need to throw something
         for (final Evaluator evaluator : evaluators) {
             if (evaluator.hasTestDataFor(description)) {
                 evaluator.evaluateStatementWithTestData(statement, description);

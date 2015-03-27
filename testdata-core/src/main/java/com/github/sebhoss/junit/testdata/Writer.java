@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.junit.testdata;
 
+import java.util.List;
+
 /**
  * Writes test data.
  *
@@ -20,6 +22,6 @@ public interface Writer<T> {
      * @param testData
      *            The data to write.
      */
-    void writeTestData(Iterable<T> testData);
+    void writeTestData(List<T> testData);
 
 }

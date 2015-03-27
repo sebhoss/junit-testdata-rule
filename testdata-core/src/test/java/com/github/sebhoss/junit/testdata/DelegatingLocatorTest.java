@@ -176,6 +176,8 @@ public class DelegatingLocatorTest {
         ASSERT.that(fileLocations).containsAllIn(concat(locations1, locations2)).inOrder();
     }
 
+    // TODO: should not call locators that can't access
+
     private static Locator delegator(final Locator... locators) {
         return new DelegatingLocator(asList(locators));
     }

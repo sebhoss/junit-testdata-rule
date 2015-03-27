@@ -28,7 +28,7 @@ public class WriterConfiguration {
      */
     @Bean
     public Writer<String> batchSqlWriter() {
-        return new SpringBatchSqlWriter(jdbcTemplate);
+        return new SpringJdbcBatchSqlWriter(jdbcTemplate);
     }
 
 }

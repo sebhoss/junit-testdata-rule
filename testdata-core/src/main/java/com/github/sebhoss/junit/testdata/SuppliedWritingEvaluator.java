@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.junit.testdata;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.runner.Description;
@@ -45,7 +47,7 @@ public final class SuppliedWritingEvaluator<T> implements Evaluator {
     @Override
     public void evaluateStatementWithTestData(final Statement statement, final Description description)
             throws Throwable {
-        final Iterable<T> testData = this.supplier.getTestData(description);
+        final List<T> testData = this.supplier.getTestData(description);
 
         if (ExecutionPoint.BEFORE_STATEMENT == this.executionPoint) {
             this.writer.writeTestData(testData);

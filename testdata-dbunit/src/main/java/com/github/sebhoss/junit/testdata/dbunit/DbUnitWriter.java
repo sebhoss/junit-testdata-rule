@@ -7,6 +7,7 @@
 package com.github.sebhoss.junit.testdata.dbunit;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,33 +25,33 @@ import org.dbunit.operation.DatabaseOperation;
  */
 public final class DbUnitWriter implements Writer<IDataSet> {
 
-	private final IDatabaseConnection connection;
-	private final DatabaseOperation operation;
+    private final IDatabaseConnection connection;
+    private final DatabaseOperation   operation;
 
-	/**
-	 * @param connection
-	 *            The database connection to use.
-	 * @param operation
-	 *            The database operation to perform.
-	 */
-	@Inject
-	public DbUnitWriter(final IDatabaseConnection connection,
-			final DatabaseOperation operation) {
-		this.connection = connection;
-		this.operation = operation;
-	}
+    /**
+     * @param connection
+     *            The database connection to use.
+     * @param operation
+     *            The database operation to perform.
+     */
+    @Inject
+    public DbUnitWriter(final IDatabaseConnection connection,
+            final DatabaseOperation operation) {
+        this.connection = connection;
+        this.operation = operation;
+    }
 
-	@Override
-	public void writeTestData(final Iterable<IDataSet> testData) {
-		try {
+    @Override
+    public void writeTestData(final List<IDataSet> testData) {
+        try {
 
-			for (final IDataSet dataSet : testData) {
-				operation.execute(connection, dataSet);
-			}
+            for (final IDataSet dataSet : testData) {
+                operation.execute(connection, dataSet);
+            }
 
-		} catch (final DatabaseUnitException | SQLException exception) {
-			throw new IllegalStateException(exception);
-		}
-	}
+        } catch (final DatabaseUnitException | SQLException exception) {
+            throw new IllegalStateException(exception);
+        }
+    }
 
 }

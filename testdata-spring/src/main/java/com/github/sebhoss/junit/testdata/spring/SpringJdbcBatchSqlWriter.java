@@ -11,15 +11,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.github.sebhoss.junit.testdata.Writer;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 
 import org.springframework.jdbc.core.JdbcOperations;
 
 /**
  * Spring-based test-data writer.
  */
-public final class SpringBatchSqlWriter implements Writer<String> {
+public final class SpringJdbcBatchSqlWriter implements Writer<String> {
 
     private final JdbcOperations database;
 
@@ -28,25 +26,13 @@ public final class SpringBatchSqlWriter implements Writer<String> {
      *            The database wrapper to use.
      */
     @Inject
-    public SpringBatchSqlWriter(final JdbcOperations database) {
+    public SpringJdbcBatchSqlWriter(final JdbcOperations database) {
         this.database = database;
     }
 
     @Override
-    public void writeTestData(final Iterable<String> testData) {
-        final String[] batch = SpringBatchSqlWriter.createBatch(testData);
-
-        database.batchUpdate(batch);
-    }
-
-    private static String[] createBatch(final Iterable<String> testData) {
-        final List<String> statements = Lists.newArrayList();
-
-        for (final String statement : testData) {
-            statements.add(statement);
-        }
-
-        return Iterables.toArray(statements, String.class);
+    public void writeTestData(final List<String> testData) {
+        database.batchUpdate(testData.toArray(new String[testData.size()]));
     }
 
 }

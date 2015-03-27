@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.junit.testdata;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.runner.Description;
@@ -33,7 +35,7 @@ public class GeneratingSupplier<T> implements Supplier<T> {
     }
 
     @Override
-    public Iterable<T> getTestData(final Description description) {
+    public List<T> getTestData(final Description description) {
         return this.generator.generateTestData(description);
     }
 

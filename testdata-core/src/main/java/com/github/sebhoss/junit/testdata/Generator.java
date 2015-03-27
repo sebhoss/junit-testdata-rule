@@ -6,6 +6,8 @@
  */
 package com.github.sebhoss.junit.testdata;
 
+import java.util.List;
+
 import org.junit.runner.Description;
 
 /**
@@ -27,6 +29,6 @@ public interface Generator<T> {
      *            The description of a JUnit test statement.
      * @return The generated test data
      */
-    Iterable<T> generateTestData(Description description);
+    List<T> generateTestData(Description description);
 
 }

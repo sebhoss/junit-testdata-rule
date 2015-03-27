@@ -9,6 +9,7 @@ package com.github.sebhoss.junit.testdata;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -30,7 +31,7 @@ public final class BatchSqlWriter implements Writer<String> {
     }
 
     @Override
-    public void writeTestData(final Iterable<String> data) {
+    public void writeTestData(final List<String> data) {
         try (final Connection connection = dataSource.getConnection();
                 final Statement statement = connection.createStatement()) {
 

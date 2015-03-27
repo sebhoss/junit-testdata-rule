@@ -35,13 +35,13 @@ public class ReadingSupplier<T> implements Supplier<T> {
 
     @Override
     public boolean hasTestDataFor(final Description description) {
-        return this.locator.canAccess(description);
+        return locator.canAccess(description);
     }
 
     @Override
-    public Iterable<T> getTestData(final Description description) {
-        final List<String> resourceLocations = this.locator.locateFilesToLoad(description);
-        final List<T> testData = this.reader.readLocations(resourceLocations);
+    public List<T> getTestData(final Description description) {
+        final List<String> fileLocations = locator.locateFilesToLoad(description);
+        final List<T> testData = reader.readLocations(fileLocations);
 
         return testData;
     }

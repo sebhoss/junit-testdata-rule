@@ -6,8 +6,8 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.runner.Description;
 
@@ -34,8 +34,8 @@ public final class DelegatingLocator implements Locator {
     @Override
     public List<String> locateFilesToLoad(final Description description) {
         return locators.stream()
-                .map(locator -> locator.locateFilesToLoad(description))
-                .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+                .flatMap(locator -> locator.locateFilesToLoad(description).stream())
+                .collect(Collectors.toList());
     }
 
 }
