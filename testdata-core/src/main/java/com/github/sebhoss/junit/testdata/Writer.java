@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Writes test data.
@@ -22,6 +22,6 @@ public interface Writer<T> {
      * @param testData
      *            The data to write.
      */
-    void writeTestData(List<T> testData);
+    void writeTestData(Stream<T> testData);
 
 }

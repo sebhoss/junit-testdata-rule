@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -39,9 +39,9 @@ public class ReadingSupplier<T> implements Supplier<T> {
     }
 
     @Override
-    public List<T> getTestData(final Description description) {
-        final List<String> locations = locator.locateTestData(description);
-        final List<T> testData = reader.readLocations(locations);
+    public Stream<T> getTestData(final Description description) {
+        final Stream<String> locations = locator.locateTestData(description);
+        final Stream<T> testData = reader.readLocations(locations);
 
         return testData;
     }

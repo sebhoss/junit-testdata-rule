@@ -6,10 +6,8 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import static java.util.stream.Collectors.toList;
-
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -30,11 +28,8 @@ public final class PathBasedStatementReader implements Reader<String> {
     }
 
     @Override
-    public List<String> readLocations(final List<String> locations) {
-        return locations.stream()
-                .map(Paths::get)
-                .flatMap(path -> reader.readStatementsFrom(path).stream())
-                .collect(toList());
+    public Stream<String> readLocations(final Stream<String> locations) {
+        return locations.map(Paths::get).flatMap(reader::readStatementsFrom);
     }
 
 }

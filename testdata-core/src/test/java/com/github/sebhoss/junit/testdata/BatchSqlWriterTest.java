@@ -76,7 +76,7 @@ public class BatchSqlWriterTest {
         // given
 
         // when
-        writer.writeTestData(TEST_DATA);
+        writer.writeTestData(TEST_DATA.stream());
 
         // then
         then(dataSource).should(only()).getConnection();
@@ -101,7 +101,7 @@ public class BatchSqlWriterTest {
         thrown.expect(IllegalStateException.class);
 
         // then
-        writer.writeTestData(TEST_DATA);
+        writer.writeTestData(TEST_DATA.stream());
     }
 
     /**
@@ -119,7 +119,7 @@ public class BatchSqlWriterTest {
         thrown.expect(IllegalStateException.class);
 
         // then
-        writer.writeTestData(TEST_DATA);
+        writer.writeTestData(TEST_DATA.stream());
     }
 
     /**
@@ -138,7 +138,7 @@ public class BatchSqlWriterTest {
         thrown.expect(IllegalStateException.class);
 
         // then
-        writer.writeTestData(TEST_DATA);
+        writer.writeTestData(TEST_DATA.stream());
     }
 
     /**
@@ -157,7 +157,7 @@ public class BatchSqlWriterTest {
         thrown.expect(IllegalStateException.class);
 
         // then
-        writer.writeTestData(TEST_DATA);
+        writer.writeTestData(TEST_DATA.stream());
     }
 
 }

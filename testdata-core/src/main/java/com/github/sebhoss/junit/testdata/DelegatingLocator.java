@@ -6,9 +6,8 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import static java.util.stream.Collectors.toList;
-
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.runner.Description;
 
@@ -33,11 +32,10 @@ public final class DelegatingLocator implements Locator {
     }
 
     @Override
-    public List<String> locateTestData(final Description description) {
+    public Stream<String> locateTestData(final Description description) {
         return locators.stream()
                 .filter(locator -> locator.canAccess(description))
-                .flatMap(locator -> locator.locateTestData(description).stream())
-                .collect(toList());
+                .flatMap(locator -> locator.locateTestData(description));
     }
 
 }

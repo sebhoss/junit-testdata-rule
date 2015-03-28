@@ -9,8 +9,7 @@ package com.github.sebhoss.junit.testdata.spring;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -41,13 +40,11 @@ public final class SpringStatementReader implements Reader<String> {
     }
 
     @Override
-    public List<String> readLocations(final List<String> resourceLocations) {
-        return resourceLocations.stream()
-                .map(location -> loader.getResource(location))
-                // can't use method reference, see https://sourceforge.net/p/findbugs/bugs/1370/
-                .map(resource -> createPath(resource))
-                .map(path -> reader.readStatementsFrom(path))
-                .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+    public Stream<String> readLocations(final Stream<String> locations) {
+        return locations
+                .map(loader::getResource)
+                .map(SpringStatementReader::createPath)
+                .flatMap(reader::readStatementsFrom);
     }
 
     private static Path createPath(final Resource resource) {

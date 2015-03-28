@@ -9,7 +9,7 @@ package com.github.sebhoss.junit.testdata;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -31,13 +31,17 @@ public final class BatchSqlWriter implements Writer<String> {
     }
 
     @Override
-    public void writeTestData(final List<String> data) {
+    public void writeTestData(final Stream<String> data) {
         try (final Connection connection = dataSource.getConnection();
                 final Statement statement = connection.createStatement()) {
 
-            for (final String sql : data) {
-                statement.addBatch(sql);
-            }
+            data.forEach(sql -> {
+                try {
+                    statement.addBatch(sql);
+                } catch (final SQLException exception) {
+                    throw new IllegalStateException(sql, exception);
+                }
+            });
 
             statement.executeBatch();
 
@@ -45,5 +49,4 @@ public final class BatchSqlWriter implements Writer<String> {
             throw new IllegalStateException(exception);
         }
     }
-
 }

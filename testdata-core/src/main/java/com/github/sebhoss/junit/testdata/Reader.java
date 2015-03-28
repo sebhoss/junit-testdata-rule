@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * @param <T>
@@ -15,10 +15,10 @@ import java.util.List;
 public interface Reader<T> {
 
     /**
-     * @param resourceLocations
+     * @param locations
      *            The locations of the resources to read.
      * @return The test data found at the given resource locations.
      */
-    List<T> readLocations(List<String> resourceLocations);
+    Stream<T> readLocations(Stream<String> locations);
 
 }

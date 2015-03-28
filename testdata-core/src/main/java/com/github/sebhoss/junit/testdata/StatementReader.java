@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -40,13 +40,13 @@ public final class StatementReader {
      *            The path to read.
      * @return A List of statements read from the given path.
      */
-    public List<String> readStatementsFrom(final Path path) {
+    public Stream<String> readStatementsFrom(final Path path) {
         try {
             final byte[] contentInBytes = Files.readAllBytes(path);
             final String contentAsString = new String(contentInBytes, charset);
             final String[] statements = contentAsString.split(statementSeparator);
 
-            return Arrays.asList(statements);
+            return Arrays.stream(statements);
         } catch (final IOException exception) {
             throw new IllegalStateException(exception);
         }

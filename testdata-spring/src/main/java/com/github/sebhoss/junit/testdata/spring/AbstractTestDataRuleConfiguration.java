@@ -30,7 +30,6 @@ public abstract class AbstractTestDataRuleConfiguration {
      * @return A test-data evaluator.
      */
     @Bean
-    @ConditionalOnMissingBean(Evaluator.class)
     public abstract Evaluator evaluator();
 
 }

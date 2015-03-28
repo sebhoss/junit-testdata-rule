@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.runner.Description;
 
@@ -29,6 +29,6 @@ public interface Locator {
      *            The description to parse.
      * @return The locations of the specified files.
      */
-    List<String> locateTestData(Description description);
+    Stream<String> locateTestData(Description description);
 
 }

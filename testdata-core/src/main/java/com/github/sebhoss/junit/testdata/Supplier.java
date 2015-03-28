@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.runner.Description;
 
@@ -28,6 +28,6 @@ public interface Supplier<T> {
      *            The description of a test statement.
      * @return The test data for a given test statement.
      */
-    List<T> getTestData(Description description);
+    Stream<T> getTestData(Description description);
 
 }

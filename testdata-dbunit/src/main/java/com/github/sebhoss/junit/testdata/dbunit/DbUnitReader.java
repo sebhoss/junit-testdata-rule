@@ -6,12 +6,11 @@
  */
 package com.github.sebhoss.junit.testdata.dbunit;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
 import com.github.sebhoss.junit.testdata.Reader;
-import com.google.common.collect.Lists;
 
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.util.fileloader.DataFileLoader;
@@ -33,16 +32,8 @@ public final class DbUnitReader implements Reader<IDataSet> {
     }
 
     @Override
-    public List<IDataSet> readLocations(final List<String> resourceLocations) {
-        final List<IDataSet> dataSets = Lists.newArrayList();
-
-        for (final String location : resourceLocations) {
-            final IDataSet ds = loader.load(location);
-
-            dataSets.add(ds);
-        }
-
-        return dataSets;
+    public Stream<IDataSet> readLocations(final Stream<String> locations) {
+        return locations.map(loader::load);
     }
 
 }

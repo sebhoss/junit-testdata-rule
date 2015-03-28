@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -42,7 +42,7 @@ public final class SuppliedWritingEvaluator<T> implements Evaluator {
     @Override
     public void evaluateStatementWithTestData(final Statement statement, final Description description)
             throws Throwable {
-        final List<T> testData = supplier.getTestData(description);
+        final Stream<T> testData = supplier.getTestData(description);
 
         writer.writeTestData(testData);
 

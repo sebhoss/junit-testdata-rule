@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata.spring;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -31,8 +31,8 @@ public final class SpringJdbcBatchSqlWriter implements Writer<String> {
     }
 
     @Override
-    public void writeTestData(final List<String> testData) {
-        database.batchUpdate(testData.toArray(new String[testData.size()]));
+    public void writeTestData(final Stream<String> testData) {
+        database.batchUpdate(testData.toArray(String[]::new));
     }
 
 }

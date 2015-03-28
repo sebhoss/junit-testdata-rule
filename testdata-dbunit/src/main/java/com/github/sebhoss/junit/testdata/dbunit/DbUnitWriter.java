@@ -7,7 +7,7 @@
 package com.github.sebhoss.junit.testdata.dbunit;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -42,16 +42,14 @@ public final class DbUnitWriter implements Writer<IDataSet> {
     }
 
     @Override
-    public void writeTestData(final List<IDataSet> testData) {
-        try {
-
-            for (final IDataSet dataSet : testData) {
-                operation.execute(connection, dataSet);
+    public void writeTestData(final Stream<IDataSet> testData) {
+        testData.forEach(data -> {
+            try {
+                operation.execute(connection, data);
+            } catch (DatabaseUnitException | SQLException exception) {
+                throw new IllegalStateException(data.toString(), exception);
             }
-
-        } catch (final DatabaseUnitException | SQLException exception) {
-            throw new IllegalStateException(exception);
-        }
+        });
     }
 
 }
