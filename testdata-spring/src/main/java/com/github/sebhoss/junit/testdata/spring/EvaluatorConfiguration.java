@@ -9,7 +9,6 @@ package com.github.sebhoss.junit.testdata.spring;
 import javax.inject.Inject;
 
 import com.github.sebhoss.junit.testdata.Evaluator;
-import com.github.sebhoss.junit.testdata.ExecutionPoint;
 import com.github.sebhoss.junit.testdata.SuppliedWritingEvaluator;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -35,9 +34,8 @@ public class EvaluatorConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean(Evaluator.class)
-    public Evaluator sqlBeforeStatementEvaluator() {
-        return new SuppliedWritingEvaluator<>(supplier.loadSqlSupplier(),
-                sql.batchSqlWriter(), ExecutionPoint.BEFORE_STATEMENT);
+    public Evaluator sqlEvaluator() {
+        return new SuppliedWritingEvaluator<>(supplier.delegatingSqlSupplier(), sql.batchSqlWriter());
     }
 
 }

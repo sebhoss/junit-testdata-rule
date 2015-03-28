@@ -29,7 +29,7 @@ public class DefaultLoadSqlConfiguration extends AbstractTestDataRuleConfigurati
 
     @Override
     public Evaluator evaluator() {
-        return new SpringTransactionalEvaluator(this.transactionManager, this.evaluators.sqlBeforeStatementEvaluator());
+        return new SpringTransactionalEvaluator(this.transactionManager, this.evaluators.sqlEvaluator());
     }
 
 }

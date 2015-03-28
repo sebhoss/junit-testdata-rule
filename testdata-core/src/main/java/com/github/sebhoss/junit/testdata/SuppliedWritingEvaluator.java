@@ -19,24 +19,19 @@ import org.junit.runners.model.Statement;
  */
 public final class SuppliedWritingEvaluator<T> implements Evaluator {
 
-    private final Supplier<T>    supplier;
-    private final Writer<T>      writer;
-    private final ExecutionPoint executionPoint;
+    private final Supplier<T> supplier;
+    private final Writer<T>   writer;
 
     /**
      * @param supplier
      *            The supplier to use.
      * @param writer
      *            The writer to use.
-     * @param executionPoint
-     *            The point of execution.
      */
     @Inject
-    public SuppliedWritingEvaluator(final Supplier<T> supplier, final Writer<T> writer,
-            final ExecutionPoint executionPoint) {
+    public SuppliedWritingEvaluator(final Supplier<T> supplier, final Writer<T> writer) {
         this.supplier = supplier;
         this.writer = writer;
-        this.executionPoint = executionPoint;
     }
 
     @Override
@@ -47,17 +42,11 @@ public final class SuppliedWritingEvaluator<T> implements Evaluator {
     @Override
     public void evaluateStatementWithTestData(final Statement statement, final Description description)
             throws Throwable {
-        final List<T> testData = this.supplier.getTestData(description);
+        final List<T> testData = supplier.getTestData(description);
 
-        if (ExecutionPoint.BEFORE_STATEMENT == executionPoint) {
-            this.writer.writeTestData(testData);
-        }
+        writer.writeTestData(testData);
 
         statement.evaluate();
-
-        if (ExecutionPoint.AFTER_STATEMENT == executionPoint) {
-            this.writer.writeTestData(testData);
-        }
     }
 
 }

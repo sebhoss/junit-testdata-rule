@@ -34,7 +34,7 @@ public class SupplierConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean(Supplier.class)
-    public Supplier<String> loadSqlSupplier() {
+    public Supplier<String> delegatingSqlSupplier() {
         return new ReadingSupplier<>(locators.delegatingLocator(), readers.sqlReader());
     }
 

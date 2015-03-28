@@ -160,7 +160,7 @@ public class DelegatingLocatorTest {
      * Ensures that the delegator calls all given locators in order to get locations
      */
     @Test
-    public void shouldCallAllGivenLocatorForFileLocations() {
+    public void shouldCallAllGivenLocatorsForFileLocations() {
         // given
         final List<String> locations1 = new ArrayList<>();
         final List<String> locations2 = new ArrayList<>();
@@ -173,10 +173,50 @@ public class DelegatingLocatorTest {
         final List<String> fileLocations = delegator(locator1, locator2).locateFilesToLoad(description);
 
         // then
-        ASSERT.that(fileLocations).containsAllIn(concat(locations1, locations2)).inOrder();
+        ASSERT.that(fileLocations).containsExactlyElementsIn(concat(locations1, locations2)).inOrder();
     }
 
-    // TODO: should not call locators that can't access
+    /**
+     * Ensures that the delegator calls only the matching given locators in order to get locations
+     */
+    @Test
+    public void shouldCallOnlyMatchingGivenLocatorsForFileLocations() {
+        // given
+        final List<String> locations1 = new ArrayList<>();
+        final List<String> locations2 = new ArrayList<>();
+        final Locator locator1 = mock(Locator.class);
+        final Locator locator2 = mock(Locator.class);
+        given(locator1.locateFilesToLoad(description)).willReturn(locations1);
+        given(locator2.locateFilesToLoad(description)).willReturn(locations2);
+
+        // when
+        given(locator1.canAccess(description)).willReturn(Boolean.FALSE);
+        final List<String> fileLocations = delegator(locator1, locator2).locateFilesToLoad(description);
+
+        // then
+        ASSERT.that(fileLocations).containsExactlyElementsIn(locations2).inOrder();
+    }
+
+    /**
+     * Ensures that the delegator calls only the matching given locators in order to get locations
+     */
+    @Test
+    public void shouldCallOnlyMatchingGivenLocatorsForFileLocations2() {
+        // given
+        final List<String> locations1 = new ArrayList<>();
+        final List<String> locations2 = new ArrayList<>();
+        final Locator locator1 = mock(Locator.class);
+        final Locator locator2 = mock(Locator.class);
+        given(locator1.locateFilesToLoad(description)).willReturn(locations1);
+        given(locator2.locateFilesToLoad(description)).willReturn(locations2);
+
+        // when
+        given(locator2.canAccess(description)).willReturn(Boolean.FALSE);
+        final List<String> fileLocations = delegator(locator1, locator2).locateFilesToLoad(description);
+
+        // then
+        ASSERT.that(fileLocations).containsExactlyElementsIn(locations1).inOrder();
+    }
 
     private static Locator delegator(final Locator... locators) {
         return new DelegatingLocator(asList(locators));

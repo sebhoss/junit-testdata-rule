@@ -13,7 +13,6 @@ import javax.transaction.TransactionManager;
 
 import com.github.sebhoss.junit.testdata.BatchSqlWriter;
 import com.github.sebhoss.junit.testdata.Evaluator;
-import com.github.sebhoss.junit.testdata.ExecutionPoint;
 import com.github.sebhoss.junit.testdata.Load;
 import com.github.sebhoss.junit.testdata.LoadLocator;
 import com.github.sebhoss.junit.testdata.Locator;
@@ -57,9 +56,6 @@ public class DefaultLoadModule extends AbstractModule {
 
         // Writer
         this.bind(new StringWriter()).to(BatchSqlWriter.class);
-
-        // Execution Point
-        this.bind(ExecutionPoint.class).toInstance(ExecutionPoint.BEFORE_STATEMENT);
     }
 
     /**

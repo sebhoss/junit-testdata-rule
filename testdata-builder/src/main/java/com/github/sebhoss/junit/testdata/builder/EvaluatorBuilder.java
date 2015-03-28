@@ -9,7 +9,6 @@ package com.github.sebhoss.junit.testdata.builder;
 import javax.transaction.TransactionManager;
 
 import com.github.sebhoss.junit.testdata.Evaluator;
-import com.github.sebhoss.junit.testdata.ExecutionPoint;
 import com.github.sebhoss.junit.testdata.SuppliedWritingEvaluator;
 import com.github.sebhoss.junit.testdata.Supplier;
 import com.github.sebhoss.junit.testdata.TransactionalEvaluator;
@@ -17,7 +16,6 @@ import com.github.sebhoss.junit.testdata.Writer;
 import com.google.common.base.Preconditions;
 
 /**
- * 
  * @param <T>
  *            The type of the data to write.
  */
@@ -61,17 +59,12 @@ public final class EvaluatorBuilder<T> {
     }
 
     /**
-     * @param executionPoint
-     *            The execution point to use.
      * @return A ready to use test-data evaluator.
      */
-    public Evaluator at(final ExecutionPoint executionPoint) {
-        Preconditions.checkNotNull(executionPoint);
-
+    public Evaluator at() {
         Preconditions.checkState(this.writer != null);
 
-        final SuppliedWritingEvaluator<T> evaluator = new SuppliedWritingEvaluator<>(this.supplier, this.writer,
-                executionPoint);
+        final SuppliedWritingEvaluator<T> evaluator = new SuppliedWritingEvaluator<>(this.supplier, this.writer);
 
         if (this.transactionManager == null) {
             return evaluator;
