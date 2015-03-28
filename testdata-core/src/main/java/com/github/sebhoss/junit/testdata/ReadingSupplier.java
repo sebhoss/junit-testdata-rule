@@ -40,8 +40,8 @@ public class ReadingSupplier<T> implements Supplier<T> {
 
     @Override
     public List<T> getTestData(final Description description) {
-        final List<String> fileLocations = locator.locateFilesToLoad(description);
-        final List<T> testData = reader.readLocations(fileLocations);
+        final List<String> locations = locator.locateTestData(description);
+        final List<T> testData = reader.readLocations(locations);
 
         return testData;
     }

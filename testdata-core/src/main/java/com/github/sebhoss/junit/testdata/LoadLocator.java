@@ -24,7 +24,7 @@ public final class LoadLocator implements Locator {
     }
 
     @Override
-    public List<String> locateFilesToLoad(final Description description) {
+    public List<String> locateTestData(final Description description) {
         final Load load = description.getAnnotation(Load.class);
 
         return Arrays.asList(load.value());

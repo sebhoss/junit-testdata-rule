@@ -139,7 +139,7 @@ public class DelegatingLocatorTest {
     }
 
     /**
-     * Ensures that the given locator is called by the delegator for the {@link Locator#locateFilesToLoad(Description)}
+     * Ensures that the given locator is called by the delegator for the {@link Locator#locateTestData(Description)}
      * method
      */
     @Test
@@ -147,10 +147,10 @@ public class DelegatingLocatorTest {
         // given
         final List<String> locations = new ArrayList<>();
         final Locator locator = mock(Locator.class);
-        given(locator.locateFilesToLoad(description)).willReturn(locations);
+        given(locator.locateTestData(description)).willReturn(locations);
 
         // when
-        final List<String> fileLocations = delegator(locator).locateFilesToLoad(description);
+        final List<String> fileLocations = delegator(locator).locateTestData(description);
 
         // then
         ASSERT.that(fileLocations).containsExactlyElementsIn(locations).inOrder();
@@ -166,11 +166,11 @@ public class DelegatingLocatorTest {
         final List<String> locations2 = new ArrayList<>();
         final Locator locator1 = mock(Locator.class);
         final Locator locator2 = mock(Locator.class);
-        given(locator1.locateFilesToLoad(description)).willReturn(locations1);
-        given(locator2.locateFilesToLoad(description)).willReturn(locations2);
+        given(locator1.locateTestData(description)).willReturn(locations1);
+        given(locator2.locateTestData(description)).willReturn(locations2);
 
         // when
-        final List<String> fileLocations = delegator(locator1, locator2).locateFilesToLoad(description);
+        final List<String> fileLocations = delegator(locator1, locator2).locateTestData(description);
 
         // then
         ASSERT.that(fileLocations).containsExactlyElementsIn(concat(locations1, locations2)).inOrder();
@@ -186,12 +186,12 @@ public class DelegatingLocatorTest {
         final List<String> locations2 = new ArrayList<>();
         final Locator locator1 = mock(Locator.class);
         final Locator locator2 = mock(Locator.class);
-        given(locator1.locateFilesToLoad(description)).willReturn(locations1);
-        given(locator2.locateFilesToLoad(description)).willReturn(locations2);
+        given(locator1.locateTestData(description)).willReturn(locations1);
+        given(locator2.locateTestData(description)).willReturn(locations2);
 
         // when
         given(locator1.canAccess(description)).willReturn(Boolean.FALSE);
-        final List<String> fileLocations = delegator(locator1, locator2).locateFilesToLoad(description);
+        final List<String> fileLocations = delegator(locator1, locator2).locateTestData(description);
 
         // then
         ASSERT.that(fileLocations).containsExactlyElementsIn(locations2).inOrder();
@@ -207,12 +207,12 @@ public class DelegatingLocatorTest {
         final List<String> locations2 = new ArrayList<>();
         final Locator locator1 = mock(Locator.class);
         final Locator locator2 = mock(Locator.class);
-        given(locator1.locateFilesToLoad(description)).willReturn(locations1);
-        given(locator2.locateFilesToLoad(description)).willReturn(locations2);
+        given(locator1.locateTestData(description)).willReturn(locations1);
+        given(locator2.locateTestData(description)).willReturn(locations2);
 
         // when
         given(locator2.canAccess(description)).willReturn(Boolean.FALSE);
-        final List<String> fileLocations = delegator(locator1, locator2).locateFilesToLoad(description);
+        final List<String> fileLocations = delegator(locator1, locator2).locateTestData(description);
 
         // then
         ASSERT.that(fileLocations).containsExactlyElementsIn(locations1).inOrder();

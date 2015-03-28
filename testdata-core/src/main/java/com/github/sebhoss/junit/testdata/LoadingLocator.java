@@ -6,10 +6,11 @@
  */
 package com.github.sebhoss.junit.testdata;
 
-import java.util.ArrayList;
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.runner.Description;
 
@@ -26,17 +27,17 @@ public final class LoadingLocator implements Locator {
     }
 
     @Override
-    public List<String> locateFilesToLoad(final Description description) {
+    public List<String> locateTestData(final Description description) {
         final Loading loading = description.getAnnotation(Loading.class);
 
         return retrieveLocations(loading);
     }
 
     private static List<String> retrieveLocations(final Loading loading) {
-        return Arrays.stream(loading.value())
-                .map(loadData -> loadData.value())
-                .map(locations -> Arrays.stream(locations).collect(Collectors.toList()))
-                .collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+        return stream(loading.value())
+                .map(Load::value)
+                .flatMap(Arrays::stream)
+                .collect(toList());
     }
 
 }

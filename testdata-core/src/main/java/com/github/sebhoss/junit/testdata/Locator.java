@@ -23,12 +23,12 @@ public interface Locator {
     boolean canAccess(Description description);
 
     /**
-     * Locates the specified files to load from an statement description.
+     * Locates the test data to load from a statement description.
      *
      * @param description
      *            The description to parse.
      * @return The locations of the specified files.
      */
-    List<String> locateFilesToLoad(Description description);
+    List<String> locateTestData(Description description);
 
 }
