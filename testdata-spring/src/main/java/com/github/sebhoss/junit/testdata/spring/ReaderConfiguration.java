@@ -6,7 +6,7 @@
  */
 package com.github.sebhoss.junit.testdata.spring;
 
-import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.TestDataReader;
 import com.github.sebhoss.junit.testdata.StatementReader;
 import com.google.common.base.Charsets;
 
@@ -17,7 +17,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 
 /**
- * Spring-configuration for {@link Reader}s.
+ * Spring-configuration for {@link TestDataReader}s.
  */
 @Configuration
 public class ReaderConfiguration {
@@ -26,8 +26,8 @@ public class ReaderConfiguration {
      * @return A Spring-based reader for statements.
      */
     @Bean
-    @ConditionalOnMissingBean(Reader.class)
-    public Reader<String> sqlReader() {
+    @ConditionalOnMissingBean(TestDataReader.class)
+    public TestDataReader<String> sqlReader() {
         return new SpringStatementReader(resourceLoader(), statementReader());
     }
 

@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
-import com.github.sebhoss.junit.testdata.Writer;
+import com.github.sebhoss.junit.testdata.TestDataWriter;
 
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.database.IDatabaseConnection;
@@ -23,7 +23,7 @@ import org.dbunit.operation.DatabaseOperation;
  *
  * @see DatabaseOperation Possible database operations.
  */
-public final class DbUnitWriter implements Writer<IDataSet> {
+public final class DbUnitWriter implements TestDataWriter<IDataSet> {
 
     private final IDatabaseConnection connection;
     private final DatabaseOperation   operation;

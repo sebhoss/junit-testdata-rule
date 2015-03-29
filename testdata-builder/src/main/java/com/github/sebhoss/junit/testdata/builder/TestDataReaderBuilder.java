@@ -9,7 +9,7 @@ package com.github.sebhoss.junit.testdata.builder;
 import java.nio.charset.Charset;
 
 import com.github.sebhoss.junit.testdata.PathBasedStatementReader;
-import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.TestDataReader;
 import com.github.sebhoss.junit.testdata.StatementReader;
 import com.google.common.base.Preconditions;
 
@@ -36,7 +36,7 @@ public class TestDataReaderBuilder {
      *            The charset to use.
      * @return A ready to use test-data reader.
      */
-    public Reader<String> encodedAs(final Charset charset) {
+    public TestDataReader<String> encodedAs(final Charset charset) {
         Preconditions.checkNotNull(charset);
 
         Preconditions.checkState(this.statementSeparator != null);

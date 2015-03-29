@@ -14,20 +14,21 @@ import org.junit.runner.Description;
  * @param <T>
  *            The type of the test data.
  */
-public interface Supplier<T> {
+public interface TestDataGenerator<T> {
 
     /**
      * @param description
      *            The description of a JUnit test statement.
-     * @return <code>true</code> if this supplier has test data for the given test, <code>false</code> otherwise.
+     * @return <code>true</code> if this generator can generate test data for the given test, <code>false</code>
+     *         otherwise.
      */
-    boolean hasTestDataFor(Description description);
+    boolean canGenerate(Description description);
 
     /**
      * @param description
-     *            The description of a test statement.
-     * @return The test data for a given test statement.
+     *            The description of a JUnit test statement.
+     * @return The generated test data
      */
-    Stream<T> getTestData(Description description);
+    Stream<T> generateTestData(Description description);
 
 }

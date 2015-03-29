@@ -19,8 +19,8 @@ import org.junit.runners.model.Statement;
  */
 public final class SuppliedWritingEvaluator<T> implements Evaluator {
 
-    private final Supplier<T> supplier;
-    private final Writer<T>   writer;
+    private final TestDataSupplier<T> supplier;
+    private final TestDataWriter<T>   writer;
 
     /**
      * @param supplier
@@ -29,7 +29,7 @@ public final class SuppliedWritingEvaluator<T> implements Evaluator {
      *            The writer to use.
      */
     @Inject
-    public SuppliedWritingEvaluator(final Supplier<T> supplier, final Writer<T> writer) {
+    public SuppliedWritingEvaluator(final TestDataSupplier<T> supplier, final TestDataWriter<T> writer) {
         this.supplier = supplier;
         this.writer = writer;
     }

@@ -14,7 +14,7 @@ import javax.inject.Inject;
 /**
  * Test-data reader based on the Java 7 NIO API using a {@link StatementReader}.
  */
-public final class PathBasedStatementReader implements Reader<String> {
+public final class PathBasedStatementReader implements TestDataReader<String> {
 
     private final StatementReader reader;
 

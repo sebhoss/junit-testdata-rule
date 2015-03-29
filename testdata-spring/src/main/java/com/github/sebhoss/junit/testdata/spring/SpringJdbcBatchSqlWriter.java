@@ -10,14 +10,14 @@ import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
-import com.github.sebhoss.junit.testdata.Writer;
+import com.github.sebhoss.junit.testdata.TestDataWriter;
 
 import org.springframework.jdbc.core.JdbcOperations;
 
 /**
  * Spring-based test-data writer.
  */
-public final class SpringJdbcBatchSqlWriter implements Writer<String> {
+public final class SpringJdbcBatchSqlWriter implements TestDataWriter<String> {
 
     private final JdbcOperations database;
 

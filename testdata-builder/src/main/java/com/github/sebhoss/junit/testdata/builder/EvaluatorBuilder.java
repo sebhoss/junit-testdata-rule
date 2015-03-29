@@ -10,9 +10,9 @@ import javax.transaction.TransactionManager;
 
 import com.github.sebhoss.junit.testdata.Evaluator;
 import com.github.sebhoss.junit.testdata.SuppliedWritingEvaluator;
-import com.github.sebhoss.junit.testdata.Supplier;
+import com.github.sebhoss.junit.testdata.TestDataSupplier;
 import com.github.sebhoss.junit.testdata.TransactionalEvaluator;
-import com.github.sebhoss.junit.testdata.Writer;
+import com.github.sebhoss.junit.testdata.TestDataWriter;
 import com.google.common.base.Preconditions;
 
 /**
@@ -21,8 +21,8 @@ import com.google.common.base.Preconditions;
  */
 public final class EvaluatorBuilder<T> {
 
-    private Supplier<T>        supplier;
-    private Writer<T>          writer;
+    private TestDataSupplier<T>        supplier;
+    private TestDataWriter<T>          writer;
     private TransactionManager transactionManager;
 
     /**
@@ -30,7 +30,7 @@ public final class EvaluatorBuilder<T> {
      *            The supplier to use.
      * @return The current builder.
      */
-    public EvaluatorBuilder<T> suppliedBy(final Supplier<T> supplierToUse) {
+    public EvaluatorBuilder<T> suppliedBy(final TestDataSupplier<T> supplierToUse) {
         this.supplier = Preconditions.checkNotNull(supplierToUse);
 
         return this;
@@ -41,7 +41,7 @@ public final class EvaluatorBuilder<T> {
      *            The writer to use.
      * @return The current builder.
      */
-    public EvaluatorBuilder<T> loadedBy(final Writer<T> writerToUse) {
+    public EvaluatorBuilder<T> loadedBy(final TestDataWriter<T> writerToUse) {
         this.writer = Preconditions.checkNotNull(writerToUse);
 
         return this;

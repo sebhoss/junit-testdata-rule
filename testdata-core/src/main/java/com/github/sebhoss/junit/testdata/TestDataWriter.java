@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @param <T>
  *            The type of the data to write.
  */
-public interface Writer<T> {
+public interface TestDataWriter<T> {
 
     /**
      * Writes the given test data.

@@ -16,10 +16,10 @@ import org.junit.runner.Description;
  * @param <T>
  *            The type of the test data.
  */
-public class ReadingSupplier<T> implements Supplier<T> {
+public class ReadingSupplier<T> implements TestDataSupplier<T> {
 
-    private final Locator   locator;
-    private final Reader<T> reader;
+    private final TestDataLocator   locator;
+    private final TestDataReader<T> reader;
 
     /**
      * @param locator
@@ -28,7 +28,7 @@ public class ReadingSupplier<T> implements Supplier<T> {
      *            The reader to use.
      */
     @Inject
-    public ReadingSupplier(final Locator locator, final Reader<T> reader) {
+    public ReadingSupplier(final TestDataLocator locator, final TestDataReader<T> reader) {
         this.locator = locator;
         this.reader = reader;
     }

@@ -9,7 +9,7 @@ package com.github.sebhoss.junit.testdata.builder;
 import org.junit.rules.TestRule;
 
 import com.github.sebhoss.junit.testdata.Evaluator;
-import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.TestDataReader;
 import com.github.sebhoss.junit.testdata.TestData;
 import com.google.common.base.Preconditions;
 
@@ -20,14 +20,14 @@ import com.google.common.base.Preconditions;
  */
 public final class TestDataRuleBuilder<T> {
 
-    private Reader<T> reader;
+    private TestDataReader<T> reader;
 
     /**
      * @param readerToUse
      *            The reader to use.
      * @return The current builder.
      */
-    public TestDataRuleBuilder<T> with(final Reader<T> readerToUse) {
+    public TestDataRuleBuilder<T> with(final TestDataReader<T> readerToUse) {
         this.reader = Preconditions.checkNotNull(readerToUse);
 
         return this;

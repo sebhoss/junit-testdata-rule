@@ -9,7 +9,7 @@ package com.github.sebhoss.junit.testdata.spring;
 import javax.inject.Inject;
 
 import com.github.sebhoss.junit.testdata.ReadingSupplier;
-import com.github.sebhoss.junit.testdata.Supplier;
+import com.github.sebhoss.junit.testdata.TestDataSupplier;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
- * Spring-configuration for {@link Supplier}s.
+ * Spring-configuration for {@link TestDataSupplier}s.
  */
 @Configuration
 @Import({ LocatorConfiguration.class, ReaderConfiguration.class })
@@ -33,8 +33,8 @@ public class SupplierConfiguration {
      * @return A reading supplier.
      */
     @Bean
-    @ConditionalOnMissingBean(Supplier.class)
-    public Supplier<String> delegatingSqlSupplier() {
+    @ConditionalOnMissingBean(TestDataSupplier.class)
+    public TestDataSupplier<String> delegatingSqlSupplier() {
         return new ReadingSupplier<>(locators.delegatingLocator(), readers.sqlReader());
     }
 

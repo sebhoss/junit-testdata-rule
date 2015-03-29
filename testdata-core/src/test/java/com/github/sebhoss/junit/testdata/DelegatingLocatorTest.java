@@ -47,24 +47,24 @@ public class DelegatingLocatorTest {
     @Test
     public void shouldAcceptListOfLocators() {
         // given
-        final Locator locator1 = mock(Locator.class);
-        final Locator locator2 = mock(Locator.class);
-        final Locator locator3 = mock(Locator.class);
+        final TestDataLocator locator1 = mock(TestDataLocator.class);
+        final TestDataLocator locator2 = mock(TestDataLocator.class);
+        final TestDataLocator locator3 = mock(TestDataLocator.class);
 
         // when
-        final Locator delegator = delegator(locator1, locator2, locator3);
+        final TestDataLocator delegator = delegator(locator1, locator2, locator3);
 
         // then
         ASSERT.that(delegator).isNotNull();
     }
 
     /**
-     * Ensures that the given locator is called by the delegator for the {@link Locator#canAccess(Description)} method
+     * Ensures that the given locator is called by the delegator for the {@link TestDataLocator#canAccess(Description)} method
      */
     @Test
     public void shouldCallGivenLocatorForAccessCheck() {
         // given
-        final Locator locator = mock(Locator.class);
+        final TestDataLocator locator = mock(TestDataLocator.class);
         given(locator.canAccess(description)).willReturn(Boolean.TRUE);
 
         // when
@@ -75,14 +75,14 @@ public class DelegatingLocatorTest {
     }
 
     /**
-     * Ensures that the delegator short curcuits the call to {@link Locator#canAccess(Description)}
+     * Ensures that the delegator short curcuits the call to {@link TestDataLocator#canAccess(Description)}
      */
     @Test
     public void shouldShortCurcuitCanAccessCall() {
         // given
-        final Locator locator1 = mock(Locator.class);
-        final Locator locator2 = mock(Locator.class);
-        final Locator locator3 = mock(Locator.class);
+        final TestDataLocator locator1 = mock(TestDataLocator.class);
+        final TestDataLocator locator2 = mock(TestDataLocator.class);
+        final TestDataLocator locator3 = mock(TestDataLocator.class);
         given(locator1.canAccess(description)).willReturn(Boolean.TRUE);
         given(locator2.canAccess(description)).willReturn(Boolean.TRUE);
         given(locator3.canAccess(description)).willReturn(Boolean.TRUE);
@@ -97,14 +97,14 @@ public class DelegatingLocatorTest {
     }
 
     /**
-     * Ensures that the delegator short curcuits the call to {@link Locator#canAccess(Description)}
+     * Ensures that the delegator short curcuits the call to {@link TestDataLocator#canAccess(Description)}
      */
     @Test
     public void shouldShortCurcuitCanAccessCall2() {
         // given
-        final Locator locator1 = mock(Locator.class);
-        final Locator locator2 = mock(Locator.class);
-        final Locator locator3 = mock(Locator.class);
+        final TestDataLocator locator1 = mock(TestDataLocator.class);
+        final TestDataLocator locator2 = mock(TestDataLocator.class);
+        final TestDataLocator locator3 = mock(TestDataLocator.class);
         given(locator1.canAccess(description)).willReturn(Boolean.FALSE);
         given(locator2.canAccess(description)).willReturn(Boolean.TRUE);
         given(locator3.canAccess(description)).willReturn(Boolean.TRUE);
@@ -119,14 +119,14 @@ public class DelegatingLocatorTest {
     }
 
     /**
-     * Ensures that the delegator short curcuits the call to {@link Locator#canAccess(Description)}
+     * Ensures that the delegator short curcuits the call to {@link TestDataLocator#canAccess(Description)}
      */
     @Test
     public void shouldShortCurcuitCanAccessCall3() {
         // given
-        final Locator locator1 = mock(Locator.class);
-        final Locator locator2 = mock(Locator.class);
-        final Locator locator3 = mock(Locator.class);
+        final TestDataLocator locator1 = mock(TestDataLocator.class);
+        final TestDataLocator locator2 = mock(TestDataLocator.class);
+        final TestDataLocator locator3 = mock(TestDataLocator.class);
         given(locator1.canAccess(description)).willReturn(Boolean.FALSE);
         given(locator2.canAccess(description)).willReturn(Boolean.FALSE);
         given(locator3.canAccess(description)).willReturn(Boolean.TRUE);
@@ -141,14 +141,14 @@ public class DelegatingLocatorTest {
     }
 
     /**
-     * Ensures that the given locator is called by the delegator for the {@link Locator#locateTestData(Description)}
+     * Ensures that the given locator is called by the delegator for the {@link TestDataLocator#locateTestData(Description)}
      * method
      */
     @Test
     public void shouldCallGivenLocatorForFileLocations() {
         // given
         final List<String> locations = new ArrayList<>();
-        final Locator locator = mock(Locator.class);
+        final TestDataLocator locator = mock(TestDataLocator.class);
         given(locator.locateTestData(description)).willReturn(locations.stream());
 
         // when
@@ -166,8 +166,8 @@ public class DelegatingLocatorTest {
         // given
         final List<String> locations1 = new ArrayList<>();
         final List<String> locations2 = new ArrayList<>();
-        final Locator locator1 = mock(Locator.class);
-        final Locator locator2 = mock(Locator.class);
+        final TestDataLocator locator1 = mock(TestDataLocator.class);
+        final TestDataLocator locator2 = mock(TestDataLocator.class);
         given(locator1.locateTestData(description)).willReturn(locations1.stream());
         given(locator2.locateTestData(description)).willReturn(locations2.stream());
 
@@ -188,8 +188,8 @@ public class DelegatingLocatorTest {
         // given
         final List<String> locations1 = new ArrayList<>();
         final List<String> locations2 = new ArrayList<>();
-        final Locator locator1 = mock(Locator.class);
-        final Locator locator2 = mock(Locator.class);
+        final TestDataLocator locator1 = mock(TestDataLocator.class);
+        final TestDataLocator locator2 = mock(TestDataLocator.class);
         given(locator1.locateTestData(description)).willReturn(locations1.stream());
         given(locator2.locateTestData(description)).willReturn(locations2.stream());
 
@@ -209,8 +209,8 @@ public class DelegatingLocatorTest {
         // given
         final List<String> locations1 = new ArrayList<>();
         final List<String> locations2 = new ArrayList<>();
-        final Locator locator1 = mock(Locator.class);
-        final Locator locator2 = mock(Locator.class);
+        final TestDataLocator locator1 = mock(TestDataLocator.class);
+        final TestDataLocator locator2 = mock(TestDataLocator.class);
         given(locator1.locateTestData(description)).willReturn(locations1.stream());
         given(locator2.locateTestData(description)).willReturn(locations2.stream());
 
@@ -222,7 +222,7 @@ public class DelegatingLocatorTest {
         ASSERT.that(fileLocations.collect(toList())).containsExactlyElementsIn(locations1).inOrder();
     }
 
-    private static Locator delegator(final Locator... locators) {
+    private static TestDataLocator delegator(final TestDataLocator... locators) {
         return new DelegatingLocator(asList(locators));
     }
 

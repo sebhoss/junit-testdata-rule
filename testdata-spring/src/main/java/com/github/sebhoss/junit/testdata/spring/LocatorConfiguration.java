@@ -11,14 +11,14 @@ import java.util.Arrays;
 import com.github.sebhoss.junit.testdata.DelegatingLocator;
 import com.github.sebhoss.junit.testdata.LoadLocator;
 import com.github.sebhoss.junit.testdata.LoadingLocator;
-import com.github.sebhoss.junit.testdata.Locator;
+import com.github.sebhoss.junit.testdata.TestDataLocator;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Spring-configuration for {@link Locator}s.
+ * Spring-configuration for {@link TestDataLocator}s.
  */
 @Configuration
 public class LocatorConfiguration {
@@ -28,18 +28,18 @@ public class LocatorConfiguration {
      *         this class. Therefore its wise to inject this locator instead of the other onces.
      */
     @Bean
-    @ConditionalOnMissingBean(Locator.class)
-    public Locator delegatingLocator() {
+    @ConditionalOnMissingBean(TestDataLocator.class)
+    public TestDataLocator delegatingLocator() {
         return new DelegatingLocator(Arrays.asList(loadLocator(), loadingLocator()));
     }
 
     @SuppressWarnings("static-method")
-    private Locator loadLocator() {
+    private TestDataLocator loadLocator() {
         return new LoadLocator();
     }
 
     @SuppressWarnings("static-method")
-    private Locator loadingLocator() {
+    private TestDataLocator loadingLocator() {
         return new LoadingLocator();
     }
 

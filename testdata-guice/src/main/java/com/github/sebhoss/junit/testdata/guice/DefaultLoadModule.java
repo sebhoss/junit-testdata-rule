@@ -15,15 +15,15 @@ import com.github.sebhoss.junit.testdata.BatchSqlWriter;
 import com.github.sebhoss.junit.testdata.Evaluator;
 import com.github.sebhoss.junit.testdata.Load;
 import com.github.sebhoss.junit.testdata.LoadLocator;
-import com.github.sebhoss.junit.testdata.Locator;
+import com.github.sebhoss.junit.testdata.TestDataLocator;
 import com.github.sebhoss.junit.testdata.PathBasedStatementReader;
-import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.TestDataReader;
 import com.github.sebhoss.junit.testdata.ReadingSupplier;
 import com.github.sebhoss.junit.testdata.StatementReader;
 import com.github.sebhoss.junit.testdata.SuppliedWritingEvaluator;
-import com.github.sebhoss.junit.testdata.Supplier;
+import com.github.sebhoss.junit.testdata.TestDataSupplier;
 import com.github.sebhoss.junit.testdata.TransactionalEvaluator;
-import com.github.sebhoss.junit.testdata.Writer;
+import com.github.sebhoss.junit.testdata.TestDataWriter;
 import com.google.common.base.Charsets;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
@@ -44,7 +44,7 @@ public class DefaultLoadModule extends AbstractModule {
         this.bind(new StringSupplier()).to(new StringReadingSupplier());
 
         // Annotation
-        this.bind(Locator.class).to(LoadLocator.class);
+        this.bind(TestDataLocator.class).to(LoadLocator.class);
 
         // Reader
         this.bind(new StringReader()).to(PathBasedStatementReader.class);
@@ -77,7 +77,7 @@ public class DefaultLoadModule extends AbstractModule {
         // Guice
     }
 
-    private static final class StringSupplier extends TypeLiteral<Supplier<String>> {
+    private static final class StringSupplier extends TypeLiteral<TestDataSupplier<String>> {
         // Guice
     }
 
@@ -85,11 +85,11 @@ public class DefaultLoadModule extends AbstractModule {
         // Guice
     }
 
-    private static final class StringReader extends TypeLiteral<Reader<String>> {
+    private static final class StringReader extends TypeLiteral<TestDataReader<String>> {
         // Guice
     }
 
-    private static final class StringWriter extends TypeLiteral<Writer<String>> {
+    private static final class StringWriter extends TypeLiteral<TestDataWriter<String>> {
         // Guice
     }
 

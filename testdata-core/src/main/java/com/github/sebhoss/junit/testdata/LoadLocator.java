@@ -14,7 +14,7 @@ import org.junit.runner.Description;
 /**
  * Locator for the {@link Load} annotation.
  */
-public final class LoadLocator implements Locator {
+public final class LoadLocator implements TestDataLocator {
 
     @Override
     public boolean canAccess(final Description description) {

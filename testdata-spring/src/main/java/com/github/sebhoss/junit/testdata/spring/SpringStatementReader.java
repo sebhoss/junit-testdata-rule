@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
-import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.TestDataReader;
 import com.github.sebhoss.junit.testdata.StatementReader;
 
 import org.springframework.core.io.Resource;
@@ -22,7 +22,7 @@ import org.springframework.core.io.ResourceLoader;
 /**
  * Spring-based test-data reader.
  */
-public final class SpringStatementReader implements Reader<String> {
+public final class SpringStatementReader implements TestDataReader<String> {
 
     private final ResourceLoader  loader;
     private final StatementReader reader;

@@ -8,7 +8,7 @@ package com.github.sebhoss.junit.testdata.spring;
 
 import javax.inject.Inject;
 
-import com.github.sebhoss.junit.testdata.Writer;
+import com.github.sebhoss.junit.testdata.TestDataWriter;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcOperations;
 
 /**
- * Spring-configuration for {@link Writer}s.
+ * Spring-configuration for {@link TestDataWriter}s.
  */
 @Configuration
 public class WriterConfiguration {
@@ -28,8 +28,8 @@ public class WriterConfiguration {
      * @return A Spring-based SQL writer.
      */
     @Bean
-    @ConditionalOnMissingBean(Writer.class)
-    public Writer<String> batchSqlWriter() {
+    @ConditionalOnMissingBean(TestDataWriter.class)
+    public TestDataWriter<String> batchSqlWriter() {
         return new SpringJdbcBatchSqlWriter(jdbcTemplate);
     }
 

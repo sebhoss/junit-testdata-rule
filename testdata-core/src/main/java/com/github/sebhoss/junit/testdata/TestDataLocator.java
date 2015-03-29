@@ -13,7 +13,7 @@ import org.junit.runner.Description;
 /**
  * Locates files which contain test data for a specific test method.
  */
-public interface Locator {
+public interface TestDataLocator {
 
     /**
      * @param description

@@ -12,17 +12,17 @@ import java.util.stream.Stream;
 import org.junit.runner.Description;
 
 /**
- * Delegates its calls to a supplied list of {@link Locator}s.
+ * Delegates its calls to a supplied list of {@link TestDataLocator}s.
  */
-public final class DelegatingLocator implements Locator {
+public final class DelegatingLocator implements TestDataLocator {
 
-    private final List<Locator> locators;
+    private final List<TestDataLocator> locators;
 
     /**
      * @param locators
      *            The locators to call
      */
-    public DelegatingLocator(final List<Locator> locators) {
+    public DelegatingLocator(final List<TestDataLocator> locators) {
         this.locators = locators;
     }
 

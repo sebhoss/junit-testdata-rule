@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
-import com.github.sebhoss.junit.testdata.Reader;
+import com.github.sebhoss.junit.testdata.TestDataReader;
 
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.util.fileloader.DataFileLoader;
@@ -18,7 +18,7 @@ import org.dbunit.util.fileloader.DataFileLoader;
 /**
  * A reader for DbUnit data.
  */
-public final class DbUnitReader implements Reader<IDataSet> {
+public final class DbUnitReader implements TestDataReader<IDataSet> {
 
     private final DataFileLoader loader;
 

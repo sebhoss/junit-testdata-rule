@@ -16,16 +16,16 @@ import org.junit.runner.Description;
  * @param <T>
  *            The type of the test data.
  */
-public class GeneratingSupplier<T> implements Supplier<T> {
+public class GeneratingSupplier<T> implements TestDataSupplier<T> {
 
-    private final Generator<T> generator;
+    private final TestDataGenerator<T> generator;
 
     /**
      * @param generator
      *            The generator to use.
      */
     @Inject
-    public GeneratingSupplier(final Generator<T> generator) {
+    public GeneratingSupplier(final TestDataGenerator<T> generator) {
         this.generator = generator;
     }
 

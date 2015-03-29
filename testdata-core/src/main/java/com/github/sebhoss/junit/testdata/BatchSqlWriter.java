@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 /**
  * A test-data writer which writes SQL statements (Strings) into a datasource. All statements are batched.
  */
-public final class BatchSqlWriter implements Writer<String> {
+public final class BatchSqlWriter implements TestDataWriter<String> {
 
     private final DataSource dataSource;
 

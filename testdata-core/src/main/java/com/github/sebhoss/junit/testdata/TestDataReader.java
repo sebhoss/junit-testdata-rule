@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  * @param <T>
  *            The type of the data to write.
  */
-public interface Reader<T> {
+public interface TestDataReader<T> {
 
     /**
      * @param locations
